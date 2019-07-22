@@ -1,0 +1,43 @@
+@import "../bootstrap";
+@import "../theme";
+
+/* Themes */
+@mixin md-icon($material) {
+  color: map-get($material, "icons.active");
+
+  &.#{$prefix}-icon--disabled {
+    color: map-get($material, "icons.inactive") !important;
+  }
+}
+@include theme(md-icon, "#{$prefix}-icon");
+
+.#{$prefix}-icon {
+  align-items: center;
+  display: inline-flex;
+  font-feature-settings: "liga";
+  font-size: 24px;
+  justify-content: center;
+  line-height: 1;
+  transition: $primary-transition;
+  vertical-align: text-bottom;
+
+  &--right {
+    margin-left: map-get($grid-gutters, "lg");
+  }
+  &--left {
+    margin-right: map-get($grid-gutters, "lg");
+  }
+
+  &.#{$prefix}-icon.#{$prefix}-icon--link {
+    cursor: pointer;
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  &--is-component {
+    height: 24px;
+  }
+}

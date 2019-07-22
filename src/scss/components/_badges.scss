@@ -1,0 +1,90 @@
+@import '../bootstrap';
+
+@mixin md-badge-rtl() {
+  &__badge {
+    right: initial;
+    left: -($badge-width);
+  }
+
+  &--overlap {
+    .#{$prefix}-badge__badge {
+      right: initial;
+      left: -8px;
+    }
+
+    &.#{$prefix}-badge--left {
+      .#{$prefix}-badge__badge {
+        right: -8px;
+        left: initial;
+      }
+    }
+  }
+
+  &--left {
+    .#{$prefix}-badge__badge {
+      right: -($badge-width);
+      left: initial;
+    }
+  }
+}
+@include rtl(md-badge-rtl, "#{$prefix}-badge");
+
+.#{$prefix}-badge {
+  display: inline-block;
+  position: relative;
+
+  &__badge {
+    color: $badge-color;
+    display: flex;
+    position: absolute;
+    font-size: $badge-font-size;
+    top: -($badge-height / 2);
+    right: -($badge-width);
+    border-radius: $badge-border-radius;
+    height: $badge-height;
+    width: $badge-width;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transition: $primary-transition;
+
+    .#{$prefix}-icon {
+      font-size: $badge-font-size;
+    }
+  }
+
+  &--overlap {
+    .#{$prefix}-badge__badge {
+      top: -8px;
+      right: -8px;
+    }
+
+    &.#{$prefix}-badge--left {
+      .#{$prefix}-badge__badge {
+        left: -8px;
+        right: initial;
+      }
+    }
+
+    &.#{$prefix}-badge--bottom {
+      .#{$prefix}-badge__badge {
+        bottom: -8px;
+        top: initial;
+      }
+    }
+  }
+
+  &--left {
+    .#{$prefix}-badge__badge {
+      left: -($badge-width);
+    }
+  }
+
+  &--bottom {
+    .#{$prefix}-badge__badge {
+      bottom: -($badge-height / 2);
+      top: initial;
+    }
+  }
+}

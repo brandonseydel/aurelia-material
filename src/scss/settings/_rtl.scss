@@ -1,0 +1,11 @@
+@mixin rtl($component, $name) {
+  .application {
+    &--is-rtl {
+      .#{$name} {
+        // TODO FIX THIS SHIT BE BROKE
+        // @include map-get($component);
+        display: inherit; //EMPTY
+      }
+    }
+  }
+}

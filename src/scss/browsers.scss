@@ -1,0 +1,8 @@
+@mixin firefox() {
+  // #{"\@-moz-document url-prefix(http://)"} {
+  //   @content;
+  // }
+
+  // being removed
+  @content
+}

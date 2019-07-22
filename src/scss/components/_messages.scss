@@ -1,0 +1,29 @@
+@import "../bootstrap";
+@import "../theme";
+
+/* Theme */
+@mixin md-messages($material) {
+  color: map-get($material, "text.secondary");
+}
+
+@mixin md-messages-rtl() {
+  text-align: right;
+}
+@include theme(md-messages, "#{$prefix}-messages");
+@include rtl(md-messages-rtl, "#{$prefix}-messages");
+
+.#{$prefix}-messages {
+  flex: 1 1 auto;
+  font-size: 12px;
+  min-height: 12px;
+  min-width: 1px;
+  position: relative;
+
+  &__message {
+    line-height: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+}

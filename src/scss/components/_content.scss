@@ -1,0 +1,22 @@
+@import '../bootstrap';
+@import '../browsers';
+
+    .#{$prefix}-content {
+      @include bootable();
+
+      display: flex;
+      flex: 1 0 auto;
+      max-width: 100%;
+
+      &__wrap {
+        flex: 1 1 auto;
+        max-width: 100%;
+        position: relative;
+      }
+
+      @include firefox() {
+        @media print {
+          display: block;
+        }
+      };
+    }

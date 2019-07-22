@@ -1,0 +1,382 @@
+@import "../bootstrap";
+@import "../theme";
+
+/* Themes */
+@mixin md-list($material) {
+  background: map-get($material, "cards");
+  color: map-get($material, "text.primary");
+
+  .#{$prefix}-list--disabled {
+    color: map-get($material, "text.disabled");
+  }
+
+  .#{$prefix}-list__tile__sub-title {
+    color: map-get($material, "text.secondary");
+  }
+
+  .#{$prefix}-list__tile__mask {
+    color: map-get($material, "text.disabled");
+
+    background: map-get($material, "expansion-panels.focus");
+  }
+
+  .#{$prefix}-list__tile--link:hover,
+  .#{$prefix}-list__tile--highlighted,
+  .#{$prefix}-list__group__header:hover {
+    background: map-get($material, "list-tile.hover");
+  }
+
+  .#{$prefix}-list__group--active:before,
+  .#{$prefix}-list__group--active:after {
+    background: map-get($material, "dividers");
+  }
+
+  .#{$prefix}-list__group--disabled {
+    .#{$prefix}-list__tile {
+      color: map-get($material, "text.disabled") !important;
+    }
+
+    .#{$prefix}-list__group__header__prepend-icon .#{$prefix}-icon {
+      color: map-get($material, "icons.inactive") !important;
+    }
+  }
+}
+
+@mixin md-list-rtl() {
+  &__tile {
+    &__title {
+      text-align: right;
+    }
+    &__content {
+      text-align: right;
+    }
+  }
+}
+@include theme(md-list, "#{$prefix}-list");
+@include rtl(md-list-rtl, "#{$prefix}-list");
+
+.#{$prefix}-list {
+  list-style-type: none;
+  padding: $list-top-padding 0 $list-bottom-padding;
+  transition: $primary-transition;
+  > div {
+    transition: inherit;
+  }
+
+  &__tile {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    font-size: $list-tile-font-size;
+    font-weight: $list-tile-font-weight;
+    height: $list-item-single-height;
+    margin: 0;
+    padding: 0 16px;
+    position: relative;
+    text-decoration: none;
+    transition: background $primary-transition;
+
+    &--link {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    &__content,
+    &__action {
+      height: 100%;
+    }
+
+    &__title,
+    &__sub-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: $primary-transition;
+      width: 100%;
+    }
+
+    &__title {
+      height: 24px;
+      line-height: 24px;
+      position: relative;
+      text-align: left;
+    }
+
+    &__sub-title {
+      font-size: $list-sub-title-font-size;
+    }
+
+    &__avatar {
+      display: flex;
+      justify-content: flex-start;
+      min-width: 56px;
+    }
+
+    &__action {
+      display: flex;
+      justify-content: flex-start;
+      min-width: 56px;
+      align-items: center;
+
+      .#{$prefix}-btn {
+        padding: 0;
+        margin: 0;
+
+        &--icon {
+          margin: -6px;
+        }
+      }
+
+      .#{$prefix}-radio.#{$prefix}-radio {
+        margin: 0;
+      }
+      .#{$prefix}-input--selection-controls {
+        padding: 0;
+        margin: 0;
+
+        .#{$prefix}-messages {
+          display: none;
+        }
+
+        .#{$prefix}-input__slot {
+          margin: 0;
+        }
+      }
+
+      &-text {
+        color: $list-action-text-font-color;
+        font-size: $list-action-text-font-size;
+      }
+
+      &--stack {
+        align-items: flex-end;
+        justify-content: space-between;
+        padding-top: $list-top-padding;
+        padding-bottom: $list-bottom-padding;
+        white-space: nowrap;
+        flex-direction: column;
+      }
+    }
+
+    &__content {
+      text-align: left;
+      flex: 1 1 auto;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+
+      ~ .#{$prefix}-list__tile__avatar {
+        justify-content: flex-end;
+      }
+
+      ~ .#{$prefix}-list__tile__action:not(.#{$prefix}-list__tile__action--stack) {
+        justify-content: flex-end;
+      }
+    }
+
+    &--active {
+      .#{$prefix}-list__tile__action:first-of-type {
+        .#{$prefix}-icon {
+          color: inherit;
+        }
+      }
+    }
+
+    &--avatar {
+      height: $list-item-avatar-single-height;
+    }
+  }
+
+  &--dense {
+    padding-top: $list-item-dense-top-padding;
+    padding-bottom: $list-item-dense-top-padding;
+
+    .#{$prefix}-subheader {
+      font-size: $subheader-dense-font-size;
+      height: $list-dense-subheader-height;
+    }
+
+    .#{$prefix}-list__group {
+      .#{$prefix}-subheader {
+        height: $list-dense-subheader-group-height;
+      }
+    }
+
+    .#{$prefix}-list__tile {
+      font-size: $list-item-dense-font-size;
+
+      &--avatar {
+        height: $list-item-dense-avatar-single-height;
+      }
+
+      &:not(.#{$prefix}-list__tile--avatar) {
+        height: $list-item-dense-single-height;
+      }
+
+      .#{$prefix}-icon {
+        font-size: $list-item-dense-icon-font-size;
+      }
+    }
+
+    .#{$prefix}-list__tile__sub-title {
+      font-size: $list-item-dense-font-size;
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+
+  &--two-line {
+    .#{$prefix}-list__tile {
+      height: $list-item-double-height;
+    }
+
+    &.#{$prefix}-list--dense {
+      .#{$prefix}-list__tile {
+        height: $list-item-dense-double-height;
+      }
+    }
+  }
+
+  &--three-line {
+    .#{$prefix}-list__tile {
+      height: $list-item-triple-height;
+    }
+
+    .#{$prefix}-list__tile__avatar {
+      margin-top: $list-item-avatar-triple-margin-top;
+    }
+
+    .#{$prefix}-list__tile__sub-title {
+      white-space: initial;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+    }
+
+    &.#{$prefix}-list--dense {
+      .#{$prefix}-list__tile {
+        height: $list-item-dense-triple-height;
+      }
+    }
+  }
+
+  > .#{$prefix}-list__group {
+    &:before {
+      top: 0;
+
+      .#{$prefix}-list__tile__avatar {
+        margin-top: $list-item-dense-avatar-triple-margin-top;
+      }
+    }
+  }
+
+  &__group {
+    padding: 0;
+    position: relative;
+    transition: inherit;
+
+    &:before,
+    &:after {
+      content: "";
+      height: 1px;
+      left: 0;
+      position: absolute;
+      transition: $primary-transition;
+      width: 100%;
+    }
+
+    &--active ~ .#{$prefix}-list__group {
+      &:before {
+        display: none;
+      }
+    }
+
+    &__header {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      list-style-type: none;
+
+      > div:not(.#{$prefix}-list__group__header__prepend-icon):not(.#{$prefix}-list__group__header__append-icon) {
+        flex: 1 1 auto;
+        overflow: hidden;
+      }
+
+      .#{$prefix}-list__group__header__append-icon,
+      .#{$prefix}-list__group__header__prepend-icon {
+        padding: 0 16px;
+        user-select: none;
+      }
+
+      &--sub-group {
+        align-items: center;
+        display: flex;
+
+        div .#{$prefix}-list__tile {
+          padding-left: 0;
+        }
+
+        .#{$prefix}-list__group__header__prepend-icon {
+          padding: 0 0 0 40px;
+          margin-right: 8px;
+        }
+      }
+
+      .#{$prefix}-list__group__header__prepend-icon {
+        display: flex;
+        justify-content: flex-start;
+        min-width: 56px;
+      }
+
+      &--active {
+        .#{$prefix}-list__group__header__append-icon {
+          .#{$prefix}-icon {
+            transform: rotate(-180deg);
+          }
+        }
+
+        .#{$prefix}-list__group__header__prepend-icon {
+          .#{$prefix}-icon {
+            color: inherit;
+          }
+        }
+
+        &.#{$prefix}-list__group__header--sub-group {
+          .#{$prefix}-list__group__header__prepend-icon {
+            .#{$prefix}-icon {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+    }
+
+    &__items {
+      position: relative;
+      padding: 0;
+      transition: inherit;
+
+      > div {
+        display: block;
+      }
+
+      &--no-action {
+        .#{$prefix}-list__tile {
+          padding-left: $list-item-left-padding;
+        }
+      }
+    }
+
+    &--disabled {
+      pointer-events: none;
+    }
+  }
+
+  &--subheader {
+    padding-top: 0;
+  }
+}

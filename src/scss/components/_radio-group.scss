@@ -1,0 +1,34 @@
+@import '../bootstrap';
+@import '../theme';
+
+      .#{$prefix}-input--radio-group {
+        &__input {
+          display: flex;
+          width: 100%;
+        }
+
+        &--column .#{$prefix}-input--radio-group__input > .#{$prefix}-label {
+          padding-bottom: 8px;
+        }
+
+        &--row .#{$prefix}-input--radio-group__input > .#{$prefix}-label {
+          padding-right: 8px;
+        }
+
+        &--row {
+          .#{$prefix}-input--radio-group__input {
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+        }
+
+        &--column {
+          .#{$prefix}-radio:not(:last-child):not(:only-child) {
+            margin-bottom: 8px;
+          }
+
+          .#{$prefix}-input--radio-group__input {
+            flex-direction: column;
+          }
+        }
+      }

@@ -1,0 +1,18 @@
+@import "./settings/_theme.scss";
+
+@mixin theme($component, $name) {
+  //  @include light($component, $name);
+  //  @include dark($component, $name);
+}
+
+// @mixin light($component, $name) {
+//   .theme--light.#{$name} {
+//     @include $component($material-light);
+//   }
+// }
+
+// @mixin dark($component, $name) {
+//   .theme--dark.#{$name} {
+//     @include $component($material-dark);
+//   }
+// }

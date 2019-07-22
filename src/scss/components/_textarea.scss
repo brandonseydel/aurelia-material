@@ -1,0 +1,116 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-textarea($material) {
+  &.#{$prefix}-text-field--solo-inverted.#{$prefix}-text-field--solo {
+    &.#{$prefix}-input--is-focused {
+      textarea {
+        color: map-get($material, "inputs.solo-inverted-focused-text");
+      }
+    }
+  }
+}
+@include theme(md-textarea, "#{$prefix}-textarea");
+
+@mixin md-textarea-rtl() {
+  &.#{$prefix}-text-field--enclosed {
+    .#{$prefix}-text-field__slot {
+      margin-right: 0;
+      margin-left: -12px;
+
+      textarea {
+        padding-right: 0;
+        padding-left: 12px;
+      }
+    }
+  }
+}
+@include rtl(md-textarea-rtl, "#{$prefix}-textarea");
+
+.#{$prefix}-textarea {
+  textarea {
+    flex: 1 1 auto;
+    line-height: 18px;
+    max-width: 100%;
+    min-height: 32px;
+    outline: none;
+    padding: 7px 0 8px;
+    width: 100%;
+  }
+
+  .#{$prefix}-text-field__prefix {
+    padding-top: 4px;
+    align-self: start;
+  }
+
+  &.#{$prefix}-text-field--full-width,
+  &.#{$prefix}-text-field--full-width.#{$prefix}-text-field--single-line {
+    .#{$prefix}-text-field__slot {
+      textarea {
+        margin-top: 0;
+      }
+    }
+
+    .#{$prefix}-text-field__details {
+      bottom: 4px;
+    }
+  }
+
+  &.#{$prefix}-text-field--enclosed {
+    .#{$prefix}-text-field__slot {
+      margin-right: -12px;
+
+      textarea {
+        padding-right: 12px;
+      }
+    }
+  }
+
+  &.#{$prefix}-text-field--box,
+  &.#{$prefix}-text-field--enclosed {
+    .#{$prefix}-text-field__prefix,
+    textarea {
+      margin-top: 24px;
+    }
+
+    &.#{$prefix}-text-field--single-line {
+      .#{$prefix}-text-field__prefix,
+      textarea {
+        margin-top: 12px;
+      }
+
+      .#{$prefix}-label {
+        top: 18px;
+      }
+
+      &.#{$prefix}-text-field--outline {
+        .#{$prefix}-input__control {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+
+  &.#{$prefix}-text-field--solo {
+    align-items: flex-start;
+    .#{$prefix}-input__prepend-inner,
+    .#{$prefix}-input__prepend-outer,
+    .#{$prefix}-input__append-inner,
+    .#{$prefix}-input__append-outer {
+      align-self: flex-start;
+      margin-top: 16px;
+    }
+  }
+
+  &--auto-grow {
+    textarea {
+      overflow: hidden;
+    }
+  }
+
+  &--no-resize {
+    textarea {
+      resize: none;
+    }
+  }
+}

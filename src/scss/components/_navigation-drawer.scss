@@ -1,0 +1,144 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-navigation-drawer($material) {
+  background-color: map-get(material, "cards");
+
+  &:not(.#{$prefix}-navigation-drawer--floating) {
+    .#{$prefix}-navigation-drawer__border {
+      background-color: map-get(material, "dividers");
+    }
+  }
+
+  .#{$prefix}-divider {
+    border-color: map-get(material, "dividers");
+  }
+}
+@include theme(md-navigation-drawer, "#{$prefix}-navigation-drawer");
+
+.#{$prefix}-navigation-drawer {
+  @include bootable();
+
+  display: block;
+  left: 0;
+  max-width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  pointer-events: auto;
+  top: 0;
+  will-change: transform;
+  z-index: 3;
+  -webkit-overflow-scrolling: touch;
+
+  &[data-booted="true"] {
+    transition-property: transform, width;
+  }
+
+  &__border {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+  }
+
+  &.#{$prefix}-navigation-drawer--right {
+    &:after {
+      left: 0;
+      right: initial;
+    }
+  }
+
+  &--right {
+    left: auto;
+    right: 0;
+
+    > .#{$prefix}-navigation-drawer__border {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  &--absolute {
+    position: absolute;
+  }
+
+  &--fixed {
+    position: fixed;
+  }
+
+  &--floating:after {
+    display: none;
+  }
+
+  &--mini-variant {
+    overflow: hidden;
+
+    .#{$prefix}-list__group__header__prepend-icon {
+      flex: 1 0 auto;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .#{$prefix}-list__tile__action,
+    .#{$prefix}-list__tile__avatar {
+      justify-content: center;
+      min-width: 48px;
+    }
+
+    .#{$prefix}-list__tile__content,
+    .#{$prefix}-list__tile:after {
+      opacity: 0;
+    }
+
+    .#{$prefix}-subheader,
+    .#{$prefix}-divider,
+    .#{$prefix}-list--group {
+      display: none !important;
+    }
+  }
+
+  &--temporary,
+  &--is-mobile {
+    z-index: 6;
+
+    &:not(.#{$prefix}-navigation-drawer--close) {
+      @include elevation(16);
+    }
+  }
+
+  .#{$prefix}-list {
+    background: inherit;
+  }
+
+  > .#{$prefix}-list {
+    .#{$prefix}-list__tile {
+      transition: none;
+      font-weight: $navigation-drawer-item-font-weight;
+
+      &--active {
+        .#{$prefix}-list__tile__title {
+          color: inherit;
+        }
+      }
+    }
+
+    .#{$prefix}-list--group {
+      .#{$prefix}-list__tile {
+        font-weight: $navigation-drawer-group-item-font-weight;
+      }
+
+      &__header--active {
+        &:after {
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  > .#{$prefix}-list:not(.#{$prefix}-list--dense) {
+    .#{$prefix}-list__tile {
+      font-size: $navigation-drawer-item-font-size;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@import '../bootstrap';
+@import '../browsers';
+@import '../theme';
+
+.application {
+  display: flex;
+
+  a {
+    cursor: pointer;
+  }
+
+  &--is-rtl {
+    direction: rtl;
+  }
+
+  &--wrap {
+    flex: 1 1 auto;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 100%;
+    position: relative;
+  }
+}
+
+@mixin application($material) {
+  background: map-get($material, "background");
+  color: map-get($material, "text.primary");
+
+  .text {
+    &--primary {
+      color: map-get($material, "text.primary !important");
+    }
+
+    &--secondary {
+      color: map-get($material, "text.secondary !important");
+    }
+
+    &--disabled {
+      color: map-get($material, "text.disabled !important");
+    }
+  }
+}
+
+@include theme(application, 'application');
+
+@include firefox() {
+  @media print {
+    .application {
+      display: block;
+
+      &--wrap {
+        display: block;
+      }
+    }
+  }
+};

@@ -1,0 +1,189 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-chip($material) {
+  background: map-get($material, "chips.background");
+  color: map-get($material, "chips.color");
+
+  &--disabled {
+    color: map-get($material, "text.disabled");
+  }
+}
+
+@mixin md-chip-rtl() {
+  &__close {
+    margin: $chip-close-margin-rtl;
+  }
+
+  &--removable {
+    .#{$prefix}-chip__content {
+      padding: $chip-removable-padding-rtl;
+    }
+  }
+
+  &--select-multi {
+    margin: $chip-margin 0 $chip-margin $chip-margin;
+  }
+
+  .#{$prefix}-avatar {
+    margin-right: -12px;
+    margin-left: 8px;
+  }
+
+  .#{$prefix}-icon {
+    &--right {
+      margin-right: $chip-icon-offset;
+      margin-left: $chip-icon-negative-offset;
+    }
+
+    &--left {
+      margin-right: $chip-icon-negative-offset;
+      margin-left: $chip-icon-offset;
+    }
+  }
+}
+
+@include theme(md-chip, "#{$prefix}-chip");
+@include rtl(md-chip-rtl, "#{$prefix}-chip");
+
+.#{$prefix}-chip {
+  align-items: center;
+  border-radius: $chip-border-radius;
+  display: inline-flex;
+  font-size: $chip-font-size;
+  margin: $chip-margin;
+  outline: none;
+  position: relative;
+  transition: $primary-transition;
+  vertical-align: middle;
+
+  .#{$prefix}-chip__content {
+    align-items: center;
+    border-radius: $chip-border-radius;
+    cursor: default;
+    display: inline-flex;
+    height: $chip-height;
+    justify-content: space-between;
+    padding: $chip-padding;
+    vertical-align: middle;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  &--removable {
+    .#{$prefix}-chip__content {
+      padding: $chip-removable-padding;
+    }
+  }
+
+  .#{$prefix}-avatar {
+    height: $chip-height !important;
+    margin-left: -12px;
+    margin-right: 8px;
+    min-width: $chip-height;
+    width: $chip-height !important;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &:focus:not(.#{$prefix}-chip--disabled),
+  &--active,
+  &--selected {
+    border-color: rgba(#000, 0.13);
+    @include elevation(2);
+
+    &:after {
+      background: currentColor;
+      border-radius: inherit;
+      content: "";
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: inherit;
+      width: 100%;
+      pointer-events: none;
+      opacity: 0.13;
+    }
+  }
+
+  &--label {
+    border-radius: $chip-label-border-radius;
+
+    .#{$prefix}-chip__content {
+      border-radius: $chip-label-border-radius;
+    }
+  }
+  &\&.#{$prefix}-chip--outline {
+    background: $chip-outline-background;
+    border: 1px solid currentColor;
+    color: $chip-outline-color;
+    height: $chip-height;
+
+    .#{$prefix}-avatar {
+      margin-left: -13px;
+    }
+  }
+
+  &--small {
+    height: $chip-small-height !important;
+
+    .#{$prefix}-avatar {
+      height: $chip-small-height !important;
+      min-width: $chip-small-height;
+      width: $chip-small-height !important;
+    }
+
+    .#{$prefix}-icon {
+      font-size: $chip-small-font-size;
+    }
+  }
+
+  &__close {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    font-size: $chip-icon-font-size;
+    margin: $chip-close-margin;
+    text-decoration: none;
+    user-select: none;
+
+    > .#{$prefix}-icon {
+      color: inherit !important;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--disabled {
+    .#{$prefix}-chip__close {
+      pointer-events: none;
+    }
+  }
+
+  &--select-multi {
+    margin: $chip-margin $chip-margin $chip-margin 0;
+  }
+
+  .#{$prefix}-icon {
+    color: inherit;
+
+    &--right {
+      margin-left: $chip-icon-offset;
+      margin-right: $chip-icon-negative-offset;
+    }
+
+    &--left {
+      margin-left: $chip-icon-negative-offset;
+      margin-right: $chip-icon-offset;
+    }
+  }
+}

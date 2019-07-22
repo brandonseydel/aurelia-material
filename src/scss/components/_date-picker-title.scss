@@ -1,0 +1,42 @@
+@import '../bootstrap';
+
+@mixin md-date-picker-title-rtl() {
+      .#{$prefix}-picker__title__btn {
+        text-align: right;
+      }
+    }
+    @include rtl(md-date-picker-title-rtl, "#{$prefix}-date-picker-title");
+
+    .#{$prefix}-date-picker-title {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      flex-wrap: wrap;
+      line-height: 1;
+    }
+
+    .#{$prefix}-date-picker-title__year {
+      align-items: center;
+      display: inline-flex;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .#{$prefix}-date-picker-title__date {
+      font-size: 34px;
+      text-align: left;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 8px;
+      margin-bottom: -8px;
+
+      > div {
+        position: relative;
+      }
+    }
+
+    .#{$prefix}-date-picker-title--disabled {
+      pointer-events: none;
+    }

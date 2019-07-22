@@ -1,0 +1,153 @@
+@import '../bootstrap';
+@import '../theme';
+
+@mixin md-select($material) {
+        .#{$prefix}-select__selections {
+          color: map-get($material, "text.primary");
+        }
+
+        &.#{$prefix}-input--is-disabled {
+          .#{$prefix}-select__selections {
+            color: map-get($material, "text.disabled");
+          }
+        }
+
+        .#{$prefix}-chip--disabled, 
+        .#{$prefix}-select__selection--disabled {
+          color: map-get($material, "text.disabled");
+        }
+
+        &.#{$prefix}-text-field--solo-inverted.#{$prefix}-input--is-focused {
+          .#{$prefix}-select__selections {
+            color: map-get($material, "inputs.solo-inverted-focused-text");
+          }
+        }
+      }
+      @include theme(md-select, 'md-select');
+
+      .#{$prefix}-select {
+        position: relative;
+
+        & > .#{$prefix}-input__control > .#{$prefix}-input__slot {
+          cursor: pointer;
+        }
+
+        .#{$prefix}-chip {
+          flex: 0 1 auto;
+        }
+
+        .fade-transition-leave-active {
+          position: absolute;
+          left: 0;
+        }
+
+        &.#{$prefix}-input--is-dirty {
+          ::placeholder {
+            color: transparent !important;
+          }
+        }
+
+        &:not(.#{$prefix}-input--is-dirty) {
+          &:not(.#{$prefix}-input--is-focused) {
+            .#{$prefix}-text-field__prefix {
+              line-height: 20px;
+              position: absolute;
+              top: 7px;
+              transition: $primary-transition;
+            }
+          }
+        }
+
+        &.#{$prefix}-text-field--enclosed:not(.#{$prefix}-text-field--single-line) {
+          .#{$prefix}-select__selections {
+            padding-top: 24px;
+          }
+        }
+
+        &.#{$prefix}-text-field {
+          input {
+            flex: 1 1;
+            margin-top: 0;
+            min-width: 0;
+            pointer-events: none;
+            position: relative;
+          }
+        }
+
+        &.#{$prefix}-select--is-menu-active {
+          .#{$prefix}-input__icon--append .#{$prefix}-icon {
+            transform: rotate(180deg);
+          }
+        }
+
+        &.#{$prefix}-select--chips {
+          input {
+            margin: 0;
+          }
+
+          .#{$prefix}-select__selections {
+            min-height: 42px;
+          }
+
+          &.#{$prefix}-select--chips--small {
+            .#{$prefix}-select__selections {
+              min-height: 32px;
+            }
+          }
+
+          &:not(.#{$prefix}-text-field--single-line) {
+            &.#{$prefix}-text-field--box, 
+            &.#{$prefix}-text-field--enclosed {
+              .#{$prefix}-select__selections {
+                min-height: 68px;
+              }
+
+              &.#{$prefix}-select--chips--small {
+                .#{$prefix}-select__selections {
+                  min-height: 56px;
+                }
+              }
+            }
+          }
+        }
+
+        &.#{$prefix}-text-field--reverse {
+          .#{$prefix}-select__slot, 
+          .#{$prefix}-select__selections {
+            flex-direction: row-reverse;
+          }
+        }
+
+        &__selections {
+          align-items: center;
+          display: flex;
+          flex: 1 1 auto;
+          flex-wrap: wrap;
+          line-height: 18px;
+        }
+
+        &__selection {
+          max-width: 90%;
+
+          &--comma {
+            align-items: center;
+            display: inline-flex;
+            margin: 7px 4px 7px 0;
+          }
+        }
+
+        &__slot {
+          position: relative;
+          align-items: center;
+          display: flex;
+          width: 100%;
+        }
+
+        &:not(.#{$prefix}-text-field--single-line) {
+          .#{$prefix}-select__slot {
+            > input {
+              align-self: flex-end;
+            }
+          }
+        }
+      }

@@ -1,0 +1,28 @@
+@import '../bootstrap';
+@import '../theme';
+
+@mixin md-radio($material) {
+        &--is-disabled {
+          label {
+            color: map-get($material, "text.disabled");
+          }
+
+          .#{$prefix}-icon {
+
+            color: map-get($material, "buttons.disabled") !important;
+          }
+        }
+      }
+      @include theme(md-radio, "#{$prefix}-radio");
+
+      .#{$prefix}-radio {
+        align-items: center;
+        display: flex;
+        height: auto;
+        margin-right: 16px;
+        outline: none;
+
+        &--is-disabled {
+          pointer-events: none;
+        }
+      }

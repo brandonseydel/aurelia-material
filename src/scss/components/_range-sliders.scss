@@ -1,0 +1,31 @@
+@import '../bootstrap';
+@import '../theme';
+
+      /* Theme */
+@mixin md-range-slider($material) {
+        &.#{$prefix}-input--slider.#{$prefix}-input--is-disabled {
+          .#{$prefix}-slider.#{$prefix}-slider {
+            .#{$prefix}-slider__thumb {
+              background: map-get($material, "selection-controls.thumb.disabled");
+            }
+          }
+        }
+      }
+      @include theme(md-range-slider, "#{$prefix}-input--range-slider");
+
+      /** Input Group */
+      .#{$prefix}-input--range-slider {
+        &.#{$prefix}-input--is-disabled {
+          .#{$prefix}-slider__track-fill {
+            display: none;
+          }
+
+          &.#{$prefix}-input--slider {
+            .#{$prefix}-slider.#{$prefix}-slider {
+              .#{$prefix}-slider__thumb {
+                border-color: transparent;
+              }
+            }
+          }
+        }
+      }

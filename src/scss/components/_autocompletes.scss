@@ -1,0 +1,34 @@
+.#{$prefix}-autocomplete {
+  &.#{$prefix}-input > .#{$prefix}-input__control > .#{$prefix}-input__slot {
+    cursor: text;
+  }
+
+  input {
+    align-self: center;
+  }
+
+  &--is-selecting-index {
+    input {
+      opacity: 0;
+    }
+  }
+  &.#{$prefix}-text-field--enclosed:not(.#{$prefix}-text-field--solo):not(.#{$prefix}-text-field--single-line) {
+    .#{$prefix}-select__slot > input {
+      margin-top: 24px;
+    }
+  }
+
+  &:not(.#{$prefix}-input--is-disabled).#{$prefix}-select.#{$prefix}-text-field {
+    input {
+      pointer-events: inherit;
+    }
+  }
+
+  &__content.#{$prefix}-menu__content {
+    border-radius: 0;
+
+    .#{$prefix}-card {
+      border-radius: 0;
+    }
+  }
+}

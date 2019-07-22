@@ -1,0 +1,19 @@
+.#{$prefix}-rating {
+        .#{$prefix}-icon {
+          padding: 0.5rem;
+          border-radius: 50%;
+          user-select: none;
+        }
+
+        &--readonly {
+          .#{$prefix}-icon {
+            pointer-events: none;
+          }
+        }
+
+        &--dense {
+          .#{$prefix}-icon {
+            padding: 0.1rem;
+          }
+        }
+      }

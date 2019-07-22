@@ -1,0 +1,15 @@
+@import '../bootstrap';
+@import '../theme';
+
+    /* Theme */
+@mixin md-counter($material) {
+      color: map-get($material, "text.secondary");
+    }
+    @include theme(md-counter, "#{$prefix}-counter");
+
+    .#{$prefix}-counter {
+      flex: 0 1 auto;
+      font-size: 12px;
+      min-height: 12px;
+      line-height: 1;
+    }

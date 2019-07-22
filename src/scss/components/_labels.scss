@@ -1,0 +1,18 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-label($material) {
+  color: map-get($material, "text.secondary");
+
+  &--is-disabled {
+    color: map-get($material, "text.disabled");
+  }
+}
+@include theme(md-label, "#{$prefix}-label");
+
+.#{$prefix}-label {
+  font-size: 16px;
+  line-height: 1;
+  min-height: 8px;
+  transition: 0.3s, map-get($transition, "swing");
+}

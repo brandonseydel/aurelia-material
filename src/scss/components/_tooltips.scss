@@ -1,0 +1,32 @@
+@import '../bootstrap';
+
+.#{$prefix}-tooltip{
+
+  &__content{
+    background:  map-get($grey, "darken-2");
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 8px;
+    position: absolute;
+    text-transform: initial;
+    width: auto;
+    @include elevation(2);
+
+    &[class*="-active"] {
+      transition: .15s  map-get($transition, "swing");
+      pointer-events: none;
+    }
+
+    &--fixed{
+      position: fixed;
+    }
+  }
+
+  @media #{mamp-get($display-breakpoints, "sm-and-down")}{
+    .#{$prefix}-tooltip__content{
+      padding: 10px 16px;
+    }
+  }
+}

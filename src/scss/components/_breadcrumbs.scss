@@ -1,0 +1,54 @@
+@import '../bootstrap';
+@import '../theme';
+
+@mixin md-breadcrumbs($material) {
+      .#{$prefix}-breadcrumbs__divider, .#{$prefix}-breadcrumbs__item--disabled {
+        color: map-get($material, "text.disabled");
+      }
+    }
+    @include theme(md-breadcrumbs, "#{$prefix}-breadcrumbs");
+
+    .#{$prefix}-breadcrumbs {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      flex: $breadcrumbs-flex;
+      list-style-type: none;
+      margin: $breadcrumbs-margin;
+      padding: $breadcrumbs-padding;
+
+      li {
+        align-items: center;
+        display: inline-flex;
+        font-size: $breadcrumbs-item-font-size;
+
+        .#{$prefix}-icon {
+          font-size: $breadcrumbs-item-large-font-size;
+        }
+
+        &:nth-child(even) {
+          padding: $breadcrumbs-even-child-padding;
+        }
+      }
+
+      &--large {
+        li {
+          font-size: $breadcrumbs-item-large-font-size;
+
+          .#{$prefix}-icon {
+            font-size: $breadcrumbs-item-large-font-size;
+          }
+        }
+      }
+
+      &__item {
+        align-items: center;
+        display: inline-flex;
+        text-decoration: none;
+        transition: $primary-transition;
+
+        &--disabled {
+          pointer-events: none;
+        }
+      }
+    }

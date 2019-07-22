@@ -1,0 +1,43 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-small-dialog($material) {
+  a {
+    color: rgba(map-get($material, "fg-color"), map-get($material, "primary-text-percent"));
+  }
+}
+
+// TODO FIX THIS CRAP
+// theme(md-small-dialog, "md-small-dialog"){
+// theme(@($material) { background: $material.cards }, "md-small-dialog__content");
+// theme(@($material) { background: $material.cards }, "md-small-dialog__actions");
+
+.md-small-dialog {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  &__content {
+    padding: 0 24px;
+  }
+
+  &__actions {
+    text-align: right;
+    white-space: pre;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.md-menu__activator {
+  height: 100%;
+}

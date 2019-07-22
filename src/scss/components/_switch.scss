@@ -1,0 +1,86 @@
+@import "../bootstrap";
+@import "../theme";
+
+/** Theme */
+@mixin md-input--switch($material) {
+  &__thumb {
+    color: map-get($material, "selection-controls.thumb.inactive");
+  }
+
+  &__track {
+    color: map-get($material, "selection-controls.track.inactive");
+  }
+
+  &.#{$prefix}-input--is-disabled {
+    .#{$prefix}-input--switch__thumb {
+      color: map-get($material, "selection-controls.thumb.disabled") !important;
+    }
+
+    .#{$prefix}-input--switch__track {
+      color: map-get($material, "selection-controls.track.disabled") !important;
+    }
+  }
+}
+
+@mixin md-input--switch-rtl() {
+  .#{$prefix}-input--selection-controls__ripple {
+    left: auto;
+    right: -14px;
+  }
+
+  &.#{$prefix}-input--is-dirty {
+    .#{$prefix}-input--selection-controls__ripple,
+    .#{$prefix}-input--switch__thumb {
+      transform: translate(-16px, 0);
+    }
+  }
+}
+@include theme(md-input--switch, "#{$prefix}-input--switch");
+@include rtl(md-input--switch-rtl, "#{$prefix}-input--switch");
+
+.#{$prefix}-input--switch {
+  &__track,
+  &__thumb {
+    background-color: currentColor;
+    pointer-events: none;
+    transition: inherit;
+  }
+
+  &__track {
+    border-radius: 8px;
+    height: 14px;
+    left: 2px;
+    opacity: 0.6;
+    position: absolute;
+    right: 2px;
+    top: calc(50% - 7px);
+  }
+
+  &__thumb {
+    border-radius: 50%;
+    top: calc(50% - 10px);
+    height: 20px;
+    position: relative;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include elevation(4);
+  }
+
+  .#{$prefix}-input--selection-controls__input {
+    width: 38px;
+  }
+
+  .#{$prefix}-input--selection-controls__ripple {
+    left: -14px;
+    top: calc(50% - 24px);
+  }
+
+  &.#{$prefix}-input--is-dirty {
+    .#{$prefix}-input--selection-controls__ripple,
+    .#{$prefix}-input--switch__thumb {
+      transform: translate(16px, 0);
+    }
+  }
+}

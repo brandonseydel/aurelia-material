@@ -1,0 +1,122 @@
+@import "../bootstrap";
+@import "../theme";
+
+/* Theme */
+@mixin md-treeview($material) {
+  color: map-get($material, "text.primary");
+
+  &--hoverable .#{$prefix}-treeview-node__root:hover,
+  .#{$prefix}-treeview-node--active {
+    background: map-get($material, "dividers");
+  }
+}
+
+@mixin md-treeview-rtl() {
+  > .#{$prefix}-treeview-node {
+    margin-right: 0;
+
+    &--leaf {
+      margin-right: 24px;
+      margin-left: 0;
+    }
+  }
+
+  &-node {
+    margin-right: 26px;
+    margin-left: 0;
+
+    &--leaf {
+      margin-right: 50px;
+      margin-left: 0;
+    }
+
+    &__toggle {
+      transform: rotate(90deg);
+
+      &--open {
+        transform: none;
+      }
+    }
+  }
+}
+@include theme(md-treeview, "#{$prefix}-treeview");
+@include rtl(md-treeview-rtl, "#{$prefix}-treeview");
+
+.#{$prefix}-treeview {
+  > .#{$prefix}-treeview-node {
+    margin-left: 0;
+
+    &--leaf {
+      margin-left: 24px;
+    }
+  }
+
+  &-node {
+    margin-left: 26px;
+
+    &--excluded {
+      display: none;
+    }
+
+    &--click {
+      > .#{$prefix}-treeview-node__root,
+      > .#{$prefix}-treeview-node__root > .#{$prefix}-treeview-node__content > * {
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+
+    &--leaf {
+      margin-left: 50px;
+    }
+
+    &__root {
+      display: flex;
+      align-items: center;
+      min-height: 34px;
+    }
+
+    &__content {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+      align-items: center;
+      .#{$prefix}-btn {
+        flex-grow: 0 !important;
+        flex-shrink: 1 !important;
+      }
+    }
+
+    &__label {
+      font-size: 1.2rem;
+      margin-left: 6px;
+      flex-grow: 1;
+      flex-shrink: 0;
+
+      .#{$prefix}-icon {
+        padding-right: 8px;
+      }
+    }
+
+    &__checkbox {
+      user-select: none;
+    }
+
+    &__toggle {
+      user-select: none;
+      transform: rotate(-90deg);
+
+      &--open {
+        transform: none;
+      }
+
+      &--loading {
+        animation: progress-circular-rotate 1s linear infinite;
+      }
+    }
+
+    &__children {
+      transition: all $treeview-transition;
+    }
+  }
+}

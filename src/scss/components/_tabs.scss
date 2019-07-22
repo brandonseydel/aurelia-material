@@ -1,0 +1,191 @@
+@import "../bootstrap";
+@import "../theme";
+
+/* Theme */
+@mixin md-tabs__bar($material) {
+  background-color: map-get($material, "cards");
+
+  .#{$prefix}-tabs__div {
+    color: map-get($material, "tabs.active");
+  }
+
+  .#{$prefix}-tabs__item--disabled {
+    color: map-get($material, "buttons.disabled");
+  }
+}
+
+@include theme(md-tabs__bar, "#{$prefix}-tabs__bar");
+
+.#{$prefix}-tabs {
+  position: relative;
+}
+
+.#{$prefix}-tabs__bar {
+  position: relative;
+  border-radius: inherit;
+}
+
+.#{$prefix}-tabs__icon {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  user-select: none;
+  width: 32px;
+
+  &--prev {
+    left: 4px;
+  }
+
+  &--next {
+    right: 4px;
+  }
+}
+
+.#{$prefix}-tabs__wrapper {
+  overflow: hidden;
+  contain: content;
+  display: flex;
+
+  &--show-arrows {
+    margin-left: 40px;
+    margin-right: 40px;
+
+    .#{$prefix}-tabs__container--align-with-title {
+      padding-left: 16px;
+
+      @media #{map_get($display-breakpoints, "xs-only")} {
+        padding-left: 24px;
+      }
+    }
+  }
+}
+
+.#{$prefix}-tabs__container {
+  flex: 1 0 auto;
+  display: flex;
+  height: 48px;
+  list-style-type: none;
+  transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+  white-space: nowrap;
+  position: relative;
+
+  &--overflow {
+    .#{$prefix}-tabs__div {
+      flex: 1 0 auto;
+    }
+  }
+
+  &--grow {
+    .#{$prefix}-tabs__div {
+      flex: 1 0 auto;
+      max-width: none;
+    }
+  }
+
+  &--icons-and-text {
+    height: 72px;
+  }
+
+  &--align-with-title {
+    padding-left: 56px;
+  }
+
+  &--fixed-tabs,
+  &--icons-and-text {
+    .#{$prefix}-tabs__div {
+      min-width: 72px;
+      @media #{map-get($display-breakpoints, "sm-and-up")} {
+        min-width: 160px;
+      }
+    }
+  }
+
+  &--fixed-tabs {
+    .#{$prefix}-tabs__div {
+      @media #{map-get($display-breakpoints, "xs-only")} {
+        flex: 1 0 auto;
+      }
+    }
+  }
+
+  &--centered,
+  &--fixed-tabs,
+  &--right {
+    > .#{$prefix}-tabs__div:first-child {
+      margin-left: auto;
+    }
+
+    .#{$prefix}-tabs__slider-wrapper + .#{$prefix}-tabs__div {
+      margin-left: auto;
+    }
+  }
+
+  &--centered,
+  &--fixed-tabs {
+    > .#{$prefix}-tabs__div:last-child {
+      margin-right: auto;
+    }
+  }
+
+  &--icons-and-text {
+    .#{$prefix}-tabs__item {
+      flex-direction: column-reverse;
+
+      .#{$prefix}-icon {
+        margin-bottom: 6px;
+      }
+    }
+  }
+}
+
+.#{$prefix}-tabs__div {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 1 auto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  height: inherit;
+  max-width: 264px;
+  text-align: center;
+  text-transform: $tab-text-transform;
+  vertical-align: middle;
+}
+
+.#{$prefix}-tabs__item {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  justify-content: center;
+  max-width: inherit;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: $primary-transition;
+  user-select: none;
+  white-space: normal;
+
+  &:not(.#{$prefix}-tabs__item--active) {
+    opacity: 0.7;
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+}
+
+.#{$prefix}-tabs__slider {
+  height: 2px;
+  width: 100%;
+
+  &-wrapper {
+    bottom: 0;
+    margin: 0 !important;
+    position: absolute;
+    transition: $primary-transition;
+  }
+}

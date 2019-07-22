@@ -1,0 +1,166 @@
+@import '../bootstrap';
+@import '../theme';
+
+    /* Theme */
+@mixin md-datatable($material) {
+      thead {
+        th.column.sortable {
+          .#{$prefix}-icon {
+            color: rgba(map-get($material, "fg-color"), map-get($material, "disabledORhints-text-percent"));
+          }
+
+          &:hover {
+            color: rgba(map-get($material, "fg-color"), map-get($material, "primary-text-percent"));
+          }
+
+          &.active {
+            color: rgba(map-get($material, "fg-color"), map-get($material, "primary-text-percent"));
+
+            .#{$prefix}-icon {
+              color: rgba(map-get($material, "fg-color"), map-get($material, "primary-text-percent"));
+            }
+          }
+        }
+      }
+
+      .#{$prefix}-datatable__actions {
+        background-color: map-get($material, "cards");
+        color: rgba(map-get($material, "fg-color"), map-get($material, "secondary-text-percent"));
+        border-top: 1px solid rgba(map-get($material, "fg-color"), map-get($material, "divider-percent"));
+      }
+    }
+    @include theme(md-datatable, "#{$prefix}-datatable");
+
+    .#{$prefix}-datatable {
+      .#{$prefix}-input--selection-controls {
+        margin: 0;
+        padding: 0;
+      }
+
+      thead {
+        th.column.sortable {
+          cursor: pointer;
+          outline: 0;
+
+          .#{$prefix}-icon {
+            font-size: 16px;
+            display: inline-block;
+            opacity: 0;
+            transition: 0.3s, map-get($transition, "swing");
+          }
+
+          &:focus, 
+          &:hover {
+            .#{$prefix}-icon {
+              opacity: 0.6;
+            }
+          }
+
+          &.active {
+            transform: none;
+
+            .#{$prefix}-icon {
+              opacity: 1;
+            }
+
+            &.desc {
+              .#{$prefix}-icon {
+                transform: rotate(-180deg);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /** Actions */
+    .#{$prefix}-datatable__actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 12px;
+      flex-wrap: wrap-reverse;
+
+      .#{$prefix}-btn {
+        color: inherit;
+
+        &:last-of-type {
+          margin-left: 14px;
+        }
+      }
+
+      &__range-controls {
+        display: flex;
+        align-items: center;
+        min-height: 48px;
+      }
+
+      &__pagination {
+        display: block;
+        text-align: center;
+        margin: 0 32px 0 24px;
+      }
+
+      &__select {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 14px;
+        white-space: nowrap;
+
+        .#{$prefix}-select {
+          flex: 0 1 0;
+          margin: 13px 0 13px 34px;
+          padding: 0;
+          position: initial;
+        }
+
+        .#{$prefix}-select__selections {
+          flex-wrap: nowrap;
+
+          .#{$prefix}-select__selection--comma {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .#{$prefix}-datatable__progress {
+      height: auto !important;
+
+      tr, td, th {
+        height: auto !important;
+      }
+
+      th {
+        padding: 0 !important;
+
+        .#{$prefix}-progress-linear {
+          margin: 0;
+        }
+      }
+    }
+
+    .#{$prefix}-datatable__expand {
+      &-row {
+        border: none !important;
+      }
+
+      &-col {
+        padding: 0 !important;
+        height: 0px !important;
+
+        &--expanded {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+      }
+
+      &-content {
+        transition: height $primary-transition;
+
+        > .card {
+          border-radius: 0;
+          box-shadow: none;
+        }
+      }
+    }

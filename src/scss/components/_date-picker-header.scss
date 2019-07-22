@@ -1,0 +1,60 @@
+@import '../bootstrap';
+@import '../theme';
+
+@mixin md-date-picker-header($material) {
+      .#{$prefix}-date-picker-header__value:not(.#{$prefix}-date-picker-header__value--disabled) {
+        button:not(:hover):not(:focus) {
+          color: map-get($material, "text.primary");
+        }
+      }
+
+      .#{$prefix}-date-picker-header__value--disabled {
+        button {
+          color: map-get($material, "text.disabled");
+        }
+      }
+    }
+    @include theme(md-date-picker-header, "#{$prefix}-date-picker-header");
+
+    .#{$prefix}-date-picker-header {
+      padding: 4px 16px;
+
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+
+      .#{$prefix}-btn {
+        margin: 0;
+        z-index: auto;
+      }
+
+      .#{$prefix}-icon {
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+
+    .#{$prefix}-date-picker-header__value {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+
+      div {
+        transition: $primary-transition;
+        width: 100%;
+      }
+
+      button {
+        cursor: pointer;
+        font-weight: bold;
+        outline: none;
+        padding: 0.5rem;
+        transition: $primary-transition;
+      }
+    }
+
+    .#{$prefix}-date-picker-header--disabled {
+      pointer-events: none;
+    }

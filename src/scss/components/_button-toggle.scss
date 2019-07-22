@@ -1,0 +1,67 @@
+@import '../bootstrap';
+@import '../theme';
+
+    /** Themes */
+
+@mixin md-btn-toggle($material) {
+      background: map-get($material, "cards");
+
+      .#{$prefix}-btn {
+        color: map-get($material, "text.primary");
+      }
+
+      &:not(.#{$prefix}-btn-toggle--only-child) {
+        .#{$prefix}-btn {
+          &.#{$prefix}-btn--active:not(:last-child) {
+            border-right-color: map-get($material, "buttons.disabled");
+          }
+        }
+      }
+    }
+    @include theme(md-btn-toggle, "#{$prefix}-btn-toggle");
+
+    .#{$prefix}-btn-toggle {
+      display: inline-flex;
+      border-radius: 2px;
+      transition: $primary-transition;
+      will-change: background, box-shadow;
+
+      .#{$prefix}-btn {
+        justify-content: center;
+        min-width: auto;
+        width: auto;
+        padding: 0 8px;
+        margin: 0;
+        opacity: 0.4;
+        border-radius: 0;
+
+        &:not(:last-child) {
+          border-right: 1px solid transparent;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        &.#{$prefix}-btn--active {
+          opacity: 1;
+        }
+
+        span + .#{$prefix}-icon {
+          font-size: initial;
+          margin-left: 10px;
+        }
+
+        &:first-child {
+          border-radius: 2px 0 0 2px;
+        }
+
+        &:last-child {
+          border-radius: 0 2px 2px 0;
+        }
+      }
+
+      &--selected {
+        @include elevation(2);
+      }
+    }

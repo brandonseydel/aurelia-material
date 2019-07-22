@@ -1,0 +1,93 @@
+@import '../bootstrap';
+
+@mixin md-carousel-rtl() {
+      &__prev {
+        left: auto;
+        right: 5px;
+      }
+
+      &__next {
+        left: 5px;
+        right: auto;
+      }
+    }
+    @include rtl(md-carousel-rtl, "#{$prefix}-carousel");
+
+    .#{$prefix}-carousel {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      @include elevation(2);
+
+      &__prev, 
+      &__next {
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        transform: translateY(-50%);
+
+        .#{$prefix}-btn {
+          margin: 0;
+          height: auto;
+          width: auto;
+
+          i {
+            font-size: 48px;
+          }
+
+          &:hover {
+            background: none;
+          }
+        }
+      }
+
+      &__prev {
+        left: 5px;
+      }
+
+      &__next {
+        right: 5px;
+      }
+
+      &__controls {
+        background: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        position: absolute;
+        height: 50px;
+        list-style-type: none;
+        width: 100%;
+        z-index: 1;
+
+        > .#{$prefix}-item-group {
+          flex: 0 1 auto;
+        }
+
+        &__item {
+          margin: 0 8px !important;
+
+          .#{$prefix}-icon {
+            opacity: 0.5;
+            transition: $primary-transition;
+          }
+
+          &--active {
+            .#{$prefix}-icon {
+              opacity: 1;
+              vertical-align: middle;
+            }
+          }
+
+          &:hover {
+            background: none;
+
+            .#{$prefix}-icon {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }

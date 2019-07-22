@@ -1,0 +1,323 @@
+@import '../bootstrap';
+@import '../theme';
+
+      /* Theme */
+@mixin md-slider($material) {
+        .#{$prefix}-slider__track, 
+        .#{$prefix}-slider__track-fill {
+          background: map-get($material, "slider.inactive");
+        }
+
+        .#{$prefix}-slider__track__container {
+          &:after {
+            border: 1px solid, map-get($material, "text.primary");
+          }
+        }
+
+        .#{$prefix}-slider__ticks {
+          border-color: map-get($material, "text.primary");
+          color: map-get($material, "text.secondary");
+        }
+
+        &:not(.#{$prefix}-input--is-dirty) {
+          .#{$prefix}-slider__thumb-label {
+            background: map-get($material, "slider.inactive");
+          }
+
+          .#{$prefix}-slider__thumb {
+            border: 3px solid, map-get($material, "slider.inactive");
+          }
+
+          &.#{$prefix}-input--slider--is-active {
+            .#{$prefix}-slider__thumb {
+              border: 3px solid, map-get($material, "slider.active");
+            }
+          }
+        }
+
+        &.#{$prefix}-input--is-disabled {
+          .#{$prefix}-slider__thumb {
+            border: 5px solid, map-get($material, "slider.disabled");
+          }
+        }
+
+        &.#{$prefix}-input--is-disabled.#{$prefix}-input--is-dirty {
+          .#{$prefix}-slider__thumb {
+            background: map-get($material, "slider.disabled");
+          }
+        }
+
+        &.#{$prefix}-input--slider--is-active {
+          .#{$prefix}-slider__track {
+            background: map-get($material, "slider.active");
+          }
+        }
+      }
+
+@mixin md-slider-rtl() {
+        .#{$prefix}-label {
+          margin-left: 16px;
+          margin-right: 0;
+        }
+      }
+      @include theme(md-slider, "#{$prefix}-input--slider");
+      @include rtl(md-slider-rtl, "#{$prefix}-input--slider");
+
+      /** Input Group */
+      .#{$prefix}-input--slider {
+        margin-top: $input-top-spacing;
+
+        &.#{$prefix}-input--is-focused {
+          .#{$prefix}-slider__thumb-container--is-active:not(.#{$prefix}-slider__thumb-container--show-label) {
+            &:before {
+              opacity: 0.2;
+              transform: scale(1);
+            }
+          }
+
+          .#{$prefix}-slider__track {
+            transition: none;
+          }
+
+          &.#{$prefix}-input--slider--ticks {
+            .#{$prefix}-slider {
+              &__track__container:after, 
+              .#{$prefix}-slider__tick {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        &.#{$prefix}-input--slider--ticks {
+          .#{$prefix}-slider__ticks.#{$prefix}-slider__ticks--always-show {
+            opacity: 1;
+          }
+
+          &-labels {
+            .#{$prefix}-input__slot {
+              margin-bottom: 16px;
+            }
+          }
+        }
+
+        &.#{$prefix}-input--is-readonly .#{$prefix}-input__control {
+          pointer-events: none;
+        }
+
+        &.#{$prefix}-input--is-disabled {
+          .#{$prefix}-slider__thumb {
+            transform: translateY(-50%) scale(0.45);
+          }
+          &.#{$prefix}-input--is-dirty {
+            .#{$prefix}-slider__thumb {
+              border: 0px solid transparent;
+            }
+          }
+        }
+
+        .#{$prefix}-input__slot > *:first-child:not(:only-child) {
+          margin-right: 16px;
+        }
+      }
+
+      /** Slider */
+      .#{$prefix}-slider {
+        cursor: default;
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 32px;
+        flex: 1;
+        outline: none;
+        user-select: none;
+
+        input {
+          cursor: default;
+          opacity: 0;
+          padding: 0;
+          width: 100%;
+        }
+      }
+
+      /** Thumb/Track/Ticks */
+      .#{$prefix}-slider {
+        &__track__container {
+          height: 2px;
+          left: 0;
+          overflow: hidden;
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 100%;
+
+          &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 2px;
+            transition: 0.3s, map-get($transition, "swing");
+            width: 2px;
+            opacity: 0;
+          }
+        }
+
+        &__track, 
+        &__thumb, 
+        &__ticks {
+          position: absolute;
+          top: 0;
+        }
+
+        &__track {
+          height: 2px;
+          left: 0;
+          transition: 0.3s, map-get($transition, "swing");
+          transform-origin: right;
+          overflow: hidden;
+          width: 100%;
+
+          &-fill {
+            position: absolute;
+            left: 0;
+            height: 2px;
+            transform-origin: left;
+            width: 100%;
+            transition: 0.3s, map-get($transition, "swing");
+          }
+        }
+
+        &__ticks-container {
+          position: absolute;
+          left: 0;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          transform: translate(0, -50%);
+        }
+
+        &__ticks {
+          opacity: 0;
+          border-style: solid;
+          transition: 0.3s, map-get($transition, "swing");
+
+          > span {
+            position: absolute;
+            top: 8px;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            user-select: none;
+          }
+
+          &:first-child > span {
+            transform: translateX(0);
+          }
+
+          &:last-child > span {
+            transform: translateX(-100%);
+          }
+        }
+
+        &:not(.#{$prefix}-input--is-dirty) {
+          .#{$prefix}-slider__ticks:first-child {
+            border-color: transparent;
+          }
+        }
+
+        &__thumb-container {
+          position: absolute;
+          top: 50%;
+          transition: 0.3s, map-get($transition, "swing");
+
+          &:before {
+            content: '';
+            color: inherit;
+            border-radius: 50%;
+            background: currentColor;
+            height: 32px;
+            left: -16px;
+            opacity: 0;
+            overflow: hidden;
+            pointer-events: none;
+            position: absolute;
+            top: -16px;
+            transform: scale(0.2);
+            transition: $primary-transition;
+            width: 32px;
+            will-change: transform, opacity;
+          }
+        }
+
+        &__thumb {
+          width: 24px;
+          height: 24px;
+          left: -12px;
+          top: 50%;
+          border-radius: 50%;
+          background: transparent;
+          transition: 0.3s, map-get($transition, "swing");
+          transform: translateY(-50%) scale(0.6);
+          user-select: none;
+        }
+      }
+
+      /** Thumb Label */
+      .#{$prefix}-slider {
+        &--is-active {
+          .#{$prefix}-slider__thumb-container--is-active {
+            .#{$prefix}-slider__thumb {
+              transform: translateY(-50%) scale(1);
+            }
+
+            &.#{$prefix}-slider__thumb-container--show-label {
+              .#{$prefix}-slider__thumb {
+                transform: translateY(-50%) scale(0);
+              }
+            }
+          }
+
+          .#{$prefix}-slider__ticks-container {
+            .#{$prefix}-slider__ticks {
+              opacity: 1;
+            }
+          }
+        }
+
+        &__thumb-label__container {
+          position: absolute;
+          left: 0;
+          top: 0;
+          transition: 0.3s, map-get($transition, "fast-in-fast-out");
+        }
+
+        &__thumb-label {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          color: #fff;
+          width: 32px;
+          height: 32px;
+          border-radius: 50% 50% 0;
+          position: absolute;
+          left: 0;
+          bottom: 100%;
+
+
+
+          transform: translateY(-20%) translateY(-12px) translateX(-50%) rotate(45deg);
+          user-select: none;
+          transition: 0.3s, map-get($transition, "fast-in-fast-out");
+
+          > * {
+            transform: rotate(-45deg);
+          }
+        }
+
+        &__track, 
+        &__track-fill {
+          position: absolute;
+        }
+      }

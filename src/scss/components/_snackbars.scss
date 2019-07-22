@@ -1,0 +1,186 @@
+// TODO CHECK THIS ONE OUT
+
+@import "../bootstrap";
+
+@mixin md-snack-rtl() {
+  &__content {
+    .#{$prefix}-btn {
+      margin: 0 24px 0 0;
+    }
+  }
+}
+
+@include rtl(md-snack-rtl, "#{$prefix}-snack");
+
+.#{$prefix}-snack {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  color: $snackbar-color;
+  pointer-events: none;
+  z-index: 1000;
+  font-size: 14px;
+  left: 0;
+  right: 0;
+
+  &--absolute {
+    position: absolute;
+  }
+
+  &--top {
+    top: 0;
+  }
+
+  &--bottom {
+    bottom: 0;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    background-color: $snackbar-background-color;
+    pointer-events: auto;
+    width: 100%;
+    @include elevation(6);
+  }
+
+  &__content {
+    width: 100%;
+    height: 48px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+
+    .#{$prefix}-btn {
+      color: $snackbar-color;
+      flex: 0 0 auto;
+      padding: 8px;
+      margin: 0 0 0 24px;
+      height: auto;
+      min-width: auto;
+      width: auto;
+
+      &__content {
+        margin: -2px;
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &--multi-line &__content {
+    height: 80px;
+    padding: 24px;
+  }
+
+  &--vertical &__content {
+    height: 112px;
+    padding: 24px 24px 14px;
+    flex-direction: column;
+    // https://stackoverflow.com/questions/35111090/text-in-a-flex-container-doesnt-wrap-in-ie11
+    align-items: stretch;
+
+    .#{$prefix}-btn {
+      &.#{$prefix}-btn {
+        //specificity
+        justify-content: flex-end;
+        padding: 0;
+        margin-left: 0;
+        margin-top: 24px;
+      }
+
+      &__content {
+        flex: 0 0 auto;
+        margin: 0;
+      }
+    }
+  }
+
+  &--auto-height &__content {
+    height: auto;
+  }
+}
+
+@mixin md-snack-sm-and-up-rtl() {
+  @media #{map-get($display-breakpoints, "sm-and-up")} {
+    &__content .#{$prefix}-btn:first-of-type {
+      margin-left: 0;
+      margin-right: 42px;
+    }
+  }
+}
+
+@include rtl(md-snack-sm-and-up-rtl, "#{$prefix}-snack");
+
+@media #{map-get($display-breakpoints, "sm-and-up")} {
+  .#{$prefix}-snack {
+    &__wrapper {
+      width: auto;
+      max-width: 568px;
+      min-width: 288px;
+      margin: 0 auto;
+      border-radius: 2px;
+
+      .#{$prefix}-snack--left & {
+        margin-left: 0;
+      }
+      .#{$prefix}-snack--right & {
+        margin-right: 0;
+      }
+    }
+
+    // this was a hack
+    &--left,
+    &--right {
+      margin: 0 $snackbar-corner-offset;
+      &.#{$prefix}-snack--top {
+        transform: translateY($snackbar-corner-offset);
+      }
+      &.#{$prefix}-snack-bottom {
+        transform: translateY(0 - $snackbar-corner-offset);
+      }
+    }
+
+    &__content .#{$prefix}-btn:first-of-type {
+      margin-left: 42px;
+    }
+  }
+}
+
+.#{$prefix}-snack-transition {
+  &-enter-active,
+  &-leave-active {
+    transition: transform 0.4s map-get($transition, "swing");
+    .#{$prefix}-snack__content {
+      transition: opacity 0.3s linear 0.1s;
+    }
+  }
+
+  &-enter {
+    .#{$prefix}-snack__content {
+      opacity: 0;
+    }
+  }
+
+  &-enter-to,
+  &-leave {
+    .#{$prefix}-snack__content {
+      opacity: 1;
+    }
+  }
+
+  &-enter,
+  &-leave-to {
+    &.#{$prefix}-snack.#{$prefix}-snack--top {
+      // Extra 8px to hide the bottom shadow
+      transform: translateY(calc(-100% - 8px));
+    }
+    &.#{$prefix}-snack.#{$prefix}-snack--bottom {
+      transform: translateY(100%);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@import "../theme";
+
+@mixin heading($material) {
+  color: map-get($material, "text.primary");
+}
+@include theme(heading, "heading");

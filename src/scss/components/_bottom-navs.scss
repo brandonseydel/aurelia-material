@@ -1,0 +1,113 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-bottom-nav($material) {
+  background-color: map-get($material, "cards");
+
+  .#{$prefix}-btn:not(.#{$prefix}-btn--active) {
+    color: map-get($material, "text.secondary") !important;
+  }
+}
+@include theme(md-bottom-nav, "#{$prefix}-bottom-nav");
+
+.#{$prefix}-item-group.#{$prefix}-bottom-nav {
+  bottom: 0;
+  box-shadow: 0 3px 14px 2px rgba(#000, 0.12);
+  display: flex;
+  left: 0;
+  justify-content: center;
+  transform: translate(0, 60px);
+  transition: all 0.4s, map-get($transition, "swing");
+  width: 100%;
+
+  &--absolute {
+    position: absolute;
+  }
+
+  &--active {
+    transform: translate(0, 0);
+  }
+
+  &--fixed {
+    position: fixed;
+    z-index: 4;
+  }
+
+  .#{$prefix}-btn {
+    background: transparent !important;
+    border-radius: 0;
+    box-shadow: none !important;
+    font-weight: 400;
+    height: 100%;
+    margin: 0;
+    max-width: 168px;
+    min-width: 80px;
+    padding: 8px 12px 10px;
+    text-transform: none;
+    width: 100%;
+
+    flex-shrink: 1;
+
+    .#{$prefix}-btn__content {
+      flex-direction: column-reverse;
+      font-size: 12px;
+      white-space: nowrap;
+      will-change: font-size;
+
+      i.#{$prefix}-icon {
+        color: inherit;
+        margin-bottom: 4px;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
+      }
+
+      span {
+        line-height: 1;
+      }
+    }
+
+    &--active {
+      padding-top: 6px;
+
+      &:before {
+        background-color: transparent;
+      }
+
+      .#{$prefix}-btn__content {
+        font-size: 14px;
+
+        .#{$prefix}-icon {
+          transform: none;
+        }
+      }
+    }
+  }
+
+  &--shift {
+    .#{$prefix}-btn__content {
+      font-size: 14px;
+    }
+
+    .#{$prefix}-btn {
+      transition: all 0.3s;
+      min-width: 56px;
+      max-width: 96px;
+
+      &--active {
+        min-width: 96px;
+        max-width: 168px;
+      }
+    }
+  }
+}
+
+.#{$prefix}-bottom-nav--shift {
+  .#{$prefix}-btn:not(.#{$prefix}-btn--active) .#{$prefix}-btn__content {
+    .#{$prefix}-icon {
+      transform: scale(1, 1) translate(0, 8px);
+    }
+
+    > span:not(.#{$prefix}-badge) {
+      color: transparent;
+    }
+  }
+}

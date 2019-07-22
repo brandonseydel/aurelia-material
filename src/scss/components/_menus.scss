@@ -1,0 +1,97 @@
+@import "../bootstrap";
+
+.#{$prefix}-menu {
+  display: block;
+  vertical-align: middle;
+
+  &--inline {
+    display: inline-block;
+  }
+
+  &__activator {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+
+    * {
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    display: inline-block;
+    border-radius: 2px;
+    max-width: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    contain: content;
+
+    will-change: transform;
+    @include elevation(8);
+
+    &--active {
+      pointer-events: none;
+    }
+
+    &--fixed {
+      position: fixed;
+    }
+
+    & > .card {
+      contain: content;
+      backface-visibility: hidden;
+    }
+  }
+
+  > .#{$prefix}-menu__content {
+    max-width: none;
+  }
+
+  &-transition {
+    &-enter {
+      .#{$prefix}-list__tile {
+        min-width: 0;
+        pointer-events: none;
+      }
+    }
+    &-enter-to {
+      .#{$prefix}-list__tile {
+        pointer-events: auto;
+        transition-delay: 0.1s;
+      }
+    }
+
+    &-leave-active,
+    &-leave-to {
+      pointer-events: none;
+    }
+
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+    }
+
+    &-enter-active,
+    &-leave-active {
+      transition: all 0.3s, map-get($transition, "fast-in-fast-out");
+    }
+  }
+}
+
+.#{$prefix}-menu-transition-enter {
+  &.#{$prefix}-menu__content--auto {
+    transition: none !important;
+
+    .#{$prefix}-list__tile {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+
+    .#{$prefix}-list__tile--active {
+      opacity: 1;
+      transform: none !important;
+      pointer-events: auto;
+    }
+  }
+}

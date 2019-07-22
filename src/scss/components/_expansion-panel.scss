@@ -1,0 +1,121 @@
+@import '../bootstrap';
+@import '../theme';
+
+    /** Theme */
+@mixin md-expansion-panel($material) {
+      .#{$prefix}-expansion-panel__container {
+        border-top: 1px solid rgba(map-get($material, "fg-color"), map-get($material, "divider-percent"));
+        background-color: map-get($material, "cards");
+        color: map-get($material, "text.primary");
+
+        .#{$prefix}-expansion-panel__header {
+          .#{$prefix}-expansion-panel__header__icon {
+            .#{$prefix}-icon {
+              color: map-get($material, "icons.active");
+            }
+          }
+        }
+
+        &--disabled {
+          color: map-get($material, "text.disabled");
+        }
+      }
+
+      &--focusable {
+        .#{$prefix}-expansion-panel__container {
+          &:focus {
+            background-color: map-get($material, "expansion-panels.focus");
+          }
+        }
+      }
+    }
+    @include theme(md-expansion-panel, "#{$prefix}-expansion-panel");
+
+    .#{$prefix}-expansion-panel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style-type: none;
+      padding: 0;
+      text-align: left;
+      width: 100%;
+      @include elevation(1);
+
+      &__container {
+        flex: 1 0 100%;
+        max-width: 100%;
+        outline: none;
+        transition: 0.3s, map-get($transition, "swing");
+
+        &:first-child {
+          border-top: none !important;
+        }
+
+        .#{$prefix}-expansion-panel__header__iconnel__header__icon {
+          margin-left: auto;
+        }
+
+        &--disabled {
+          .#{$prefix}-expansion-panel__header {
+            pointer-events: none;
+          }
+        }
+
+        &--active {
+          > .#{$prefix}-expansion-panel__header {
+            .#{$prefix}-expansion-panel__header__icon .#{$prefix}-icon {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+
+      &__header {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        position: relative;
+        padding: 12px 24px;
+        min-height: 48px;
+
+        > *:not(.#{$prefix}-expansion-panel__header__icon) {
+          flex: 1 1 auto;
+        }
+      }
+
+      &__body {
+        transition: $primary-transition;
+
+        > .#{$prefix}-card {
+          border-radius: 0;
+          @include elevation(0, true);
+        }
+      }
+
+      &--popout, &--inset {
+        @include elevation(0);
+
+        .#{$prefix}-expansion-panel__container--active {
+          margin: map-get($spacers, "three.x");
+          @include elevation(3);
+        }
+      }
+
+      &--popout, &--inset {
+        .#{$prefix}-expansion-panel__container {
+          max-width: 95%;
+        }
+      }
+
+      &--popout {
+        .#{$prefix}-expansion-panel__container--active {
+          max-width: 100%;
+        }
+      }
+
+      &--inset {
+        .#{$prefix}-expansion-panel__container--active {
+          max-width: 85%;
+        }
+      }
+    }

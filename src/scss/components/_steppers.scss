@@ -1,0 +1,288 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-stepper($material) {
+  background: map-get($material, "bg-color");
+
+  .#{$prefix}-stepper__step {
+    &:not(.#{$prefix}-stepper__step--active):not(.#{$prefix}-stepper__step--complete):not(.#{$prefix}-stepper__step--error) {
+      .#{$prefix}-stepper__step__step {
+        background: rgba(map-get($material, "fg-color"), map-get($material, "disabledORhints-text-percent"));
+      }
+    }
+
+    &__step {
+      color: map-get($material, "stepper.active");
+
+      .#{$prefix}-icon {
+        color: map-get($material, "stepper.active");
+      }
+    }
+
+    .#{$prefix}-stepper__header {
+      .#{$prefix}-divider {
+        border-color: rgba(map-get($material, "fg-color"), map-get($material, "divider-percent"));
+      }
+    }
+
+    .#{$prefix}-stepper__step {
+      &--active {
+        .#{$prefix}-stepper__label {
+          text-shadow: 0px 0px 0px rgba(map-get($material, "fg-color"), 1);
+        }
+      }
+
+      &--editable:hover {
+        background: rgba(map-get($material, "fg-color"), 0.06);
+
+        .#{$prefix}-stepper__label {
+          text-shadow: 0px 0px 0px rgba(map-get($material, "fg-color"), 1);
+        }
+      }
+
+      &--complete {
+        .#{$prefix}-stepper__label {
+          color: map-get($material, "stepper.completed");
+        }
+      }
+
+      &--inactive {
+        &.#{$prefix}-stepper__step--editable:not(.#{$prefix}-stepper__step--error) {
+          &:hover {
+            .#{$prefix}-stepper__step__step {
+              background: map-get($material, "stepper.hover");
+            }
+          }
+        }
+      }
+
+      .#{$prefix}-stepper__label {
+        color: rgba(map-get($material, "fg-color"), map-get($material, "disabledORhints-text-percent"));
+
+        small {
+          color: rgba(map-get($material, "fg-color"), map-get($material, "secondary-text-percent"));
+        }
+      }
+
+      &--non-linear {
+        .#{$prefix}-stepper__step:not(.#{$prefix}-stepper__step--complete):not(.#{$prefix}-stepper__step--error) {
+          .#{$prefix}-stepper__label {
+            color: rgba(map-get($material, "fg-color"), map-get($material, "secondary-text-percent"));
+          }
+        }
+      }
+
+      &--vertical {
+        .#{$prefix}-stepper__content:not(:last-child) {
+          border-left: 1px solid rgba(map-get($material, "fg-color"), map-get($material, "divider-percent"));
+        }
+      }
+    }
+  }
+}
+
+@mixin md-stepper-rtl() {
+  .#{$prefix}-stepper__step__step {
+    margin-right: 0;
+    margin-left: 12px;
+  }
+}
+
+@include theme(md-stepper, "#{$prefix}-stepper");
+@include rtl(md-stepper-rtl, "#{$prefix}-stepper");
+
+.#{$prefix}-stepper {
+  overflow: hidden;
+  position: relative;
+  @include elevation(2);
+}
+
+.#{$prefix}-stepper {
+  &__header {
+    height: 72px;
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include elevation(2);
+
+    .#{$prefix}-divider {
+      align-self: center;
+      margin: 0 -16px;
+    }
+  }
+}
+
+.#{$prefix}-stepper {
+  &__items {
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+.#{$prefix}-stepper {
+  &__step__step {
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    font-size: 12px;
+    justify-content: center;
+    height: 24px;
+    margin-right: 8px;
+    min-width: 24px;
+    width: 24px;
+    transition: 0.3s map-get($transition, "fast-in-fast-out");
+
+    .#{$prefix}-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+.#{$prefix}-stepper {
+  &__step {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 24px;
+    position: relative;
+
+    &--active {
+      .#{$prefix}-stepper__label {
+        transition: 0.3s map-get($transition, "ease-in-out");
+      }
+    }
+
+    &--editable {
+      cursor: pointer;
+    }
+
+    &.#{$prefix}-stepper__step--error {
+      .#{$prefix}-stepper__step__step {
+        background: transparent;
+        color: inherit;
+
+        .#{$prefix}-icon {
+          font-size: 24px;
+          color: inherit;
+        }
+      }
+
+      .#{$prefix}-stepper__label {
+        color: inherit;
+        text-shadow: none;
+        font-weight: 500;
+
+        small {
+          color: inherit;
+        }
+      }
+    }
+  }
+}
+
+.#{$prefix}-stepper {
+  &__label {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    small {
+      font-size: 12px;
+      font-weight: 300;
+      text-shadow: none;
+    }
+  }
+}
+
+.#{$prefix}-stepper {
+  &__wrapper {
+    overflow: hidden;
+    transition: none;
+  }
+}
+
+.#{$prefix}-stepper {
+  &__content {
+    top: 0;
+    padding: 24px 24px 16px 24px;
+    flex: 1 0 auto;
+    // Chrome has an issue with overflow hidden for rendering
+    // Originally used translateZ but this messes up fixed
+    // elements within the stepper
+    // Fix for #512 and #620
+    // overflow: hidden
+    width: 100%;
+
+    > .#{$prefix}-btn {
+      margin: 24px 8px 8px 0;
+    }
+
+    &--is-booted {
+      .#{$prefix}-stepper__content,
+      .#{$prefix}-stepper__wrapper {
+        transition: 0.3s map-get($transition, "swing");
+      }
+    }
+  }
+}
+
+.#{$prefix}-stepper {
+  &--vertical {
+    padding-bottom: 36px;
+
+    .#{$prefix}-stepper__content {
+      margin: -8px -36px -16px 36px;
+      padding: 16px 60px 16px 23px;
+      width: auto;
+    }
+
+    .#{$prefix}-stepper__step {
+      padding: 24px 24px 16px;
+    }
+
+    .#{$prefix}-stepper__step__step {
+      margin-right: 12px;
+    }
+  }
+
+  &--alt-labels {
+    .#{$prefix}-stepper__header {
+      height: auto;
+
+      .#{$prefix}-divider {
+        margin: 35px -67px 0;
+        align-self: flex-start;
+      }
+    }
+
+    .#{$prefix}-stepper__step {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      flex-basis: 175px;
+
+      small {
+        align-self: center;
+      }
+    }
+
+    .#{$prefix}-stepper__step__step {
+      margin-right: 0;
+      margin-bottom: 11px;
+    }
+  }
+}
+
+@media #{map-get($display-breakpoints, "sm-and-down")} {
+  .#{$prefix}-stepper:not(.#{$prefix}-stepper--vertical) {
+    .#{$prefix}-stepper__label {
+      display: none;
+    }
+
+    .#{$prefix}-stepper__step__step {
+      margin-right: 0;
+    }
+  }
+}

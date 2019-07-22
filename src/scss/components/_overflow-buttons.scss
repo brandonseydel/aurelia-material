@@ -1,0 +1,145 @@
+@import "../bootstrap";
+@import "../theme";
+
+@mixin md-overflow-btn($material) {
+  .#{$prefix}-input__control,
+  .#{$prefix}-input__slot {
+    &::before {
+      background-color: map-get(material, "dividers") !important;
+    }
+  }
+
+  &.#{$prefix}-text-field--outline {
+    .#{$prefix}-input__control,
+    .#{$prefix}-input__slot {
+      &::before {
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  &--segmented,
+  &--editable:hover,
+  &--editable.#{$prefix}-input--is-focused,
+  &--editable.#{$prefix}-select--is-menu-active {
+    .#{$prefix}-input__append-inner {
+      border-left: 1px solid, map-get(material, "dividers");
+    }
+  }
+
+  &:hover,
+  &.#{$prefix}-input--is-focused,
+  &.#{$prefix}-select--is-menu-active {
+    .#{$prefix}-input__slot {
+      background: map-get(material, "cards");
+    }
+  }
+}
+@include theme(md-overflow-btn, "#{$prefix}-overflow-btn");
+
+.#{$prefix}-overflow-btn {
+  margin-top: 12px;
+  padding-top: 0;
+
+  &:not(.#{$prefix}-overflow-btn--editable) > .#{$prefix}-input__control > .#{$prefix}-input__slot {
+    cursor: pointer;
+  }
+
+  .#{$prefix}-select__slot {
+    height: 48px;
+
+    input {
+      margin-left: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .#{$prefix}-select__selection--comma:first-child {
+    margin-left: 16px;
+  }
+
+  .#{$prefix}-input__slot {
+    transition: 0.3s, map-get($transition, "swing");
+
+    &::after {
+      content: none;
+    }
+  }
+
+  .#{$prefix}-label {
+    margin-left: 16px;
+    top: calc(50% - 10px);
+  }
+
+  .#{$prefix}-input__append-inner {
+    width: 48px;
+    height: 48px;
+    align-self: auto;
+    align-items: center;
+    margin-top: 0;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .#{$prefix}-input__append-outer,
+  .#{$prefix}-input__prepend-outer {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .#{$prefix}-input__control::before {
+    height: 1px;
+    top: -1px;
+    content: "";
+    left: 0;
+    position: absolute;
+    transition: $primary-transition;
+    width: 100%;
+  }
+
+  &.#{$prefix}-input--is-focused,
+  &.#{$prefix}-select--is-menu-active {
+    .#{$prefix}-input__slot {
+      @include elevation(2);
+    }
+  }
+
+  .#{$prefix}-select__selections {
+    width: 0px;
+  }
+
+  &--segmented {
+    .#{$prefix}-select__selections {
+      flex-wrap: nowrap;
+
+      .#{$prefix}-btn {
+        border-radius: 0;
+        margin: 0;
+        margin-right: -16px;
+        height: 48px;
+        width: 100%;
+
+        &__content {
+          justify-content: start;
+
+          &::before {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  &--editable {
+    .#{$prefix}-select__slot {
+      input {
+        cursor: text;
+      }
+    }
+
+    .#{$prefix}-input__append-inner,
+    .#{$prefix}-input__append-inner * {
+      cursor: pointer;
+    }
+  }
+}

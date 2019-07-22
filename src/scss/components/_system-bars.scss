@@ -1,0 +1,58 @@
+@import "../bootstrap";
+@import "../theme";
+
+/* Theme */
+@mixin md-system-bar($material) {
+  background-color: map-get($material, "status-bar.regular");
+  color: map-get($material, "text.secondary");
+
+  .#{$prefix}-icon {
+    color: map-get($material, "text.secondary");
+  }
+
+  &--lights-out {
+    background-color: map-get($material, "status-bar.lights-out") !important;
+  }
+}
+@include theme(md-system-bar, "#{$prefix}-system-bar");
+
+.#{$prefix}-system-bar {
+  align-items: center;
+  display: flex;
+  font-size: map-get($headings, "body-2.size");
+  font-weight: map-get($headings, "body-2.weight");
+  padding: 0 8px;
+
+  .#{$prefix}-icon {
+    font-size: map-get($headings, "subheading.size");
+  }
+
+  &--fixed,
+  &--absolute {
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+  }
+
+  &--fixed {
+    position: fixed;
+  }
+
+  &--absolute {
+    position: absolute;
+  }
+
+  &--status {
+    .#{$prefix}-icon {
+      margin-right: 4px;
+    }
+  }
+
+  &--window {
+    .#{$prefix}-icon {
+      font-size: map-get($headings, "h6.size");
+      margin-right: 8px;
+    }
+  }
+}

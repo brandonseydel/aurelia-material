@@ -1,0 +1,73 @@
+@import '../bootstrap';
+@import '../theme';
+
+@mixin md-dataiterator($material) {
+      .#{$prefix}-data-iterator__actions {
+        color: rgba(map-get($material, "fg-color"), map-get($material, "secondary-text-percent"));
+
+        &__select {
+          .#{$prefix}-select {
+            .#{$prefix}-select__selection--comma {
+              color: rgba(map-get($material, "fg-color"), map-get($material, "secondary-text-percent")) !important;
+            }
+
+            .#{$prefix}-input__append-inner {
+              color: rgba(map-get($material, "fg-color"), map-get($material, "secondary-text-percent")) !important;
+            }
+          }
+        }
+      }
+    }
+    @include theme(md-dataiterator, "#{$prefix}-data-iterator");
+
+    /** Actions */
+    .#{$prefix}-data-iterator__actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 12px;
+      flex-wrap: wrap-reverse;
+
+      .#{$prefix}-btn {
+        color: inherit;
+
+        &:last-of-type {
+          margin-left: 14px;
+        }
+      }
+
+      &__range-controls {
+        display: flex;
+        align-items: center;
+        min-height: 48px;
+      }
+
+      &__pagination {
+        display: block;
+        text-align: center;
+        margin: 0 32px 0 24px;
+      }
+
+      &__select {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 14px;
+        white-space: nowrap;
+
+        .#{$prefix}-select {
+          flex: 0 1 0;
+          margin: 13px 0 13px 34px;
+          padding: 0;
+          position: initial;
+        }
+
+        .#{$prefix}-select__selections {
+          flex-wrap: nowrap;
+
+          .#{$prefix}-select__selection--comma {
+            font-size: 12px;
+          }
+        }
+      }
+    }
