@@ -6,25 +6,25 @@
       .#{$prefix}-expansion-panel__container {
         border-top: 1px solid rgba(map-get($material, "fg-color"), map-get($material, "divider-percent"));
         background-color: map-get($material, "cards");
-        color: map-get($material, "text.primary");
+        color: map-get(map-get($material, "text"), "primary");
 
         .#{$prefix}-expansion-panel__header {
           .#{$prefix}-expansion-panel__header__icon {
             .#{$prefix}-icon {
-              color: map-get($material, "icons.active");
+              color: map-get(map-get($material, "icons"), "active");
             }
           }
         }
 
         &--disabled {
-          color: map-get($material, "text.disabled");
+          color: map-get(map-get($material, "text"), "disabled");
         }
       }
 
       &--focusable {
         .#{$prefix}-expansion-panel__container {
           &:focus {
-            background-color: map-get($material, "expansion-panels.focus");
+            background-color: map-get(map-get($material, "expansion-panels"), "focus");
           }
         }
       }
@@ -96,7 +96,7 @@
         @include elevation(0);
 
         .#{$prefix}-expansion-panel__container--active {
-          margin: map-get($spacers, "three.x");
+          margin: map-get(map-get($spacers, "three"), "x");
           @include elevation(3);
         }
       }

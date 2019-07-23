@@ -4,26 +4,26 @@
 /* Themes */
 @mixin md-list($material) {
   background: map-get($material, "cards");
-  color: map-get($material, "text.primary");
+  color: map-get(map-get($material, "text"), "primary");
 
   .#{$prefix}-list--disabled {
-    color: map-get($material, "text.disabled");
+    color: map-get(map-get($material, "text"), "disabled");
   }
 
   .#{$prefix}-list__tile__sub-title {
-    color: map-get($material, "text.secondary");
+    color: map-get(map-get($material, "text"), "secondary");
   }
 
   .#{$prefix}-list__tile__mask {
-    color: map-get($material, "text.disabled");
+    color: map-get(map-get($material, "text"), "disabled");
 
-    background: map-get($material, "expansion-panels.focus");
+    background: map-get(map-get($material, "expansion-panels"), "focus");
   }
 
   .#{$prefix}-list__tile--link:hover,
   .#{$prefix}-list__tile--highlighted,
   .#{$prefix}-list__group__header:hover {
-    background: map-get($material, "list-tile.hover");
+    background: map-get(map-get($material, "list-tile"), "hover");
   }
 
   .#{$prefix}-list__group--active:before,
@@ -33,11 +33,11 @@
 
   .#{$prefix}-list__group--disabled {
     .#{$prefix}-list__tile {
-      color: map-get($material, "text.disabled") !important;
+      color: map-get(map-get($material, "text"), "disabled") !important;
     }
 
     .#{$prefix}-list__group__header__prepend-icon .#{$prefix}-icon {
-      color: map-get($material, "icons.inactive") !important;
+      color: map-get(map-get($material, "icons"), "inactive") !important;
     }
   }
 }

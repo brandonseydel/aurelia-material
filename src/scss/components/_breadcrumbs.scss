@@ -3,7 +3,7 @@
 
 @mixin md-breadcrumbs($material) {
       .#{$prefix}-breadcrumbs__divider, .#{$prefix}-breadcrumbs__item--disabled {
-        color: map-get($material, "text.disabled");
+        color: map-get(map-get($material, "text"), "disabled");
       }
     }
     @include theme(md-breadcrumbs, "#{$prefix}-breadcrumbs");

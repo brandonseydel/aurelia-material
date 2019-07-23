@@ -2,23 +2,23 @@
 @import '../theme';
 
 @mixin md-calendar-weekly($material) {
-      background-color: map-get($material, "calendar.background-color");
+      background-color: map-get(map-get($material, "calendar"), "background-color");
       .#{$prefix}-calendar-weekly__head-weekday {
-        border-right: map-get($material, "calendar.line-color") 1px solid;
-        color: map-get($material, "calendar.text-color");
+        border-right: map-get(map-get($material, "calendar"), "line-color") 1px solid;
+        color: map-get(map-get($material, "calendar"), "text-color");
         &.#{$prefix}-past {
-          color: map-get($material, "calendar.past-color");
+          color: map-get(map-get($material, "calendar"), "past-color");
         }
         &.#{$prefix}-outside {
-          background-color: map-get($material, "calendar.outside-background-color");
+          background-color: map-get(map-get($material, "calendar"), "outside-background-color");
         }
       }
       .#{$prefix}-calendar-weekly__day {
-        border-right: map-get($material, "calendar.line-color") 1px solid;
-        border-bottom: map-get($material, "calendar.line-color") 1px solid;
-        color: map-get($material, "calendar.text-color");
+        border-right: map-get(map-get($material, "calendar"), "line-color") 1px solid;
+        border-bottom: map-get(map-get($material, "calendar"), "line-color") 1px solid;
+        color: map-get(map-get($material, "calendar"), "text-color");
         &.#{$prefix}-outside {
-          background-color: map-get($material, "calendar.outside-background-color");
+          background-color: map-get(map-get($material, "calendar"), "outside-background-color");
         }
       }
     }

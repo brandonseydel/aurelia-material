@@ -6,11 +6,11 @@
   background-color: map-get($material, "cards");
 
   .#{$prefix}-tabs__div {
-    color: map-get($material, "tabs.active");
+    color: map-get(map-get($material, "tabs"), "active");
   }
 
   .#{$prefix}-tabs__item--disabled {
-    color: map-get($material, "buttons.disabled");
+    color: map-get(map-get($material, "buttons"), "disabled");
   }
 }
 

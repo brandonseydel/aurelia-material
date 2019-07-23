@@ -2,10 +2,10 @@
 @import "../theme";
 
 @mixin md-label($material) {
-  color: map-get($material, "text.secondary");
+  color: map-get(map-get($material, "text"), "secondary");
 
   &--is-disabled {
-    color: map-get($material, "text.disabled");
+    color: map-get(map-get($material, "text"), "disabled");
   }
 }
 @include theme(md-label, "#{$prefix}-label");

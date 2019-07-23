@@ -4,12 +4,12 @@
 @mixin md-radio($material) {
         &--is-disabled {
           label {
-            color: map-get($material, "text.disabled");
+            color: map-get(map-get($material, "text"), "disabled");
           }
 
           .#{$prefix}-icon {
 
-            color: map-get($material, "buttons.disabled") !important;
+            color: map-get(map-get($material, "buttons"), "disabled") !important;
           }
         }
       }

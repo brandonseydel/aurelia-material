@@ -3,7 +3,7 @@
 
 /* Theme */
 @mixin md-treeview($material) {
-  color: map-get($material, "text.primary");
+  color: map-get(map-get($material, "text"), "primary");
 
   &--hoverable .#{$prefix}-treeview-node__root:hover,
   .#{$prefix}-treeview-node--active {

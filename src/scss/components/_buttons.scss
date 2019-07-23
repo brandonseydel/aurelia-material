@@ -15,18 +15,18 @@
 }
 
 @mixin button($material) {
-  color: map-get($material, "text.primary");
+  color: map-get(map-get($material, "text"), "primary");
 
   &.#{$prefix}-btn--disabled {
-    color: map-get($material, "buttons.disabled") !important;
+    color: map-get(map-get($material, "buttons"), "disabled") !important;
 
     .#{$prefix}-icon,
     .#{$prefix}-btn__loading {
-      color: map-get($material, "buttons.disabled") !important;
+      color: map-get(map-get($material, "buttons"), "disabled") !important;
     }
 
     &:not(.#{$prefix}-btn--icon):not(.#{$prefix}-btn--flat):not(.#{$prefix}-btn--outline) {
-      background-color: map-get($material, "buttons.focused") !important;
+      background-color: map-get(map-get($material, "buttons"), "focused") !important;
     }
   }
 
@@ -415,6 +415,6 @@
   &.error,
   &.warning,
   &.info {
-    color: map-get($material-dark, "text.primary");
+    color: map-get(map-get($material-dark, "text"), "primary");
   }
 }

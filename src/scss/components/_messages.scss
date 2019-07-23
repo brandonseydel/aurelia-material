@@ -3,7 +3,7 @@
 
 /* Theme */
 @mixin md-messages($material) {
-  color: map-get($material, "text.secondary");
+  color: map-get(map-get($material, "text"), "secondary");
 }
 
 @mixin md-messages-rtl() {

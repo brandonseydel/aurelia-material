@@ -4,13 +4,13 @@
 @mixin md-date-picker-header($material) {
       .#{$prefix}-date-picker-header__value:not(.#{$prefix}-date-picker-header__value--disabled) {
         button:not(:hover):not(:focus) {
-          color: map-get($material, "text.primary");
+          color: map-get(map-get($material, "text"), "primary");
         }
       }
 
       .#{$prefix}-date-picker-header__value--disabled {
         button {
-          color: map-get($material, "text.disabled");
+          color: map-get(map-get($material, "text"), "disabled");
         }
       }
     }

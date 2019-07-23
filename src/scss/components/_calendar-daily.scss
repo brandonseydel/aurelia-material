@@ -2,33 +2,33 @@
 @import '../theme';
 
 @mixin md-calendar-daily($material) {
-      background-color: map-get($material, "calendar.background-color");
+      background-color: map-get(map-get($material, "calendar"), "background-color");
       .#{$prefix}-calendar-daily__intervals-head {
-        border-right: map-get($material, "calendar.line-color") 1px solid;
+        border-right: map-get(map-get($material, "calendar"), "line-color") 1px solid;
       }
       .#{$prefix}-calendar-daily_head-day {
-        border-right: map-get($material, "calendar.line-color") 1px solid;
-        border-bottom: map-get($material, "calendar.line-color") 1px solid;
-        color: map-get($material, "calendar.text-color");
+        border-right: map-get(map-get($material, "calendar"), "line-color") 1px solid;
+        border-bottom: map-get(map-get($material, "calendar"), "line-color") 1px solid;
+        color: map-get(map-get($material, "calendar"), "text-color");
         &.#{$prefix}-past {
           .#{$prefix}-calendar-daily_head-weekday, 
           .#{$prefix}-calendar-daily_head-day-label {
-            color: map-get($material, "calendar.past-color");
+            color: map-get(map-get($material, "calendar"), "past-color");
           }
         }
       }
       .#{$prefix}-calendar-daily__intervals-body {
-        border-right: map-get($material, "calendar.line-color") 1px solid;
+        border-right: map-get(map-get($material, "calendar"), "line-color") 1px solid;
         .#{$prefix}-calendar-daily__interval-text {
-          color: map-get($material, "calendar.interval-color");
+          color: map-get(map-get($material, "calendar"), "interval-color");
         }
       }
       .#{$prefix}-calendar-daily__day {
-        border-right: map-get($material, "calendar.interval-line-color") 1px solid;
-        border-bottom: map-get($material, "calendar.interval-line-color") 1px solid;
+        border-right: map-get(map-get($material, "calendar"), "interval-line-color") 1px solid;
+        border-bottom: map-get(map-get($material, "calendar"), "interval-line-color") 1px solid;
       }
       .#{$prefix}-calendar-daily__day-interval {
-        border-top: map-get($material, "calendar.interval-line-color") 1px solid;
+        border-top: map-get(map-get($material, "calendar"), "interval-line-color") 1px solid;
         &:first-child {
           border-top: none !important;
         }

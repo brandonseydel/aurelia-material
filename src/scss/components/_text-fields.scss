@@ -7,14 +7,14 @@
   }
 
   &:not(.#{$prefix}-input--has-state) > .#{$prefix}-input__control > .#{$prefix}-input__slot:hover:before {
-    border-color: map-get($material, "text.primary");
+    border-color: map-get(map-get($material, "text"), "primary");
   }
 
   &.#{$prefix}-input--is-disabled > .#{$prefix}-input__control > .#{$prefix}-input__slot:before {
     border-image: repeating-linear-gradient(
         to 4px,
-        map-get($material, "text.disabled") 0px,
-        map-get($material, "text.disabled") 2px,
+        map-get(map-get($material, "text"), "disabled") 0px,
+        map-get(map-get($material, "text"), "disabled") 2px,
         transparent 2px,
         transparent 4px
       )
@@ -22,13 +22,13 @@
 
     .#{$prefix}-text-field__prefix,
     .#{$prefix}-text-field__suffix {
-      color: map-get($material, "text.disabled");
+      color: map-get(map-get($material, "text"), "disabled");
     }
   }
 
   &__prefix,
   &__suffix {
-    color: map-get($material, "text.secondary");
+    color: map-get(map-get($material, "text"), "secondary");
   }
 
   &--solo > .#{$prefix}-input__control > .#{$prefix}-input__slot {
@@ -38,22 +38,22 @@
 
   &--solo-inverted.#{$prefix}-text-field--solo {
     & > .#{$prefix}-input__control > .#{$prefix}-input__slot {
-      background: rgba(map-get($material, "inputs.solo-inverted"));
+      background: rgba(map-get(map-get($material, "inputs"), "solo-inverted"));
     }
 
     &.#{$prefix}-input--is-focused > .#{$prefix}-input__control > .#{$prefix}-input__slot {
-      background: rgba(map-get($material, "inputs.solo-inverted-focused"));
+      background: rgba(map-get(map-get($material, "inputs"), "solo-inverted-focused"));
 
       .#{$prefix}-label,
       input {
-        color: map-get($material, "inputs.solo-inverted-focused-text");
+        color: map-get(map-get($material, "inputs"), "solo-inverted-focused-text");
       }
     }
   }
 
   &--box {
     & > .#{$prefix}-input__control > .#{$prefix}-input__slot {
-      background: map-get($material, "text-fields.box");
+      background: map-get(map-get($material, "text-fields"), "box");
     }
 
     .#{$prefix}-text-field__prefix {
@@ -71,17 +71,17 @@
     }
 
     &:not(.#{$prefix}-input--is-focused) > .#{$prefix}-input__control > .#{$prefix}-input__slot:hover {
-      background: map-get($material, "text-fields.box-hover");
+      background: map-get(map-get($material, "text-fields"), "box-hover");
     }
   }
 
   &--outline {
     & > .#{$prefix}-input__control > .#{$prefix}-input__slot {
-      border: 2px solid, map-get($material, "text.secondary");
+      border: 2px solid, map-get(map-get($material, "text"), "secondary");
     }
 
     &:not(.#{$prefix}-input--is-focused):not(.#{$prefix}-input--has-state) > .#{$prefix}-input__control > .#{$prefix}-input__slot:hover {
-      border: 2px solid, map-get($material, "text.primary");
+      border: 2px solid, map-get(map-get($material, "text"), "primary");
     }
   }
 }

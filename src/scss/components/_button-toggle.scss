@@ -7,13 +7,13 @@
       background: map-get($material, "cards");
 
       .#{$prefix}-btn {
-        color: map-get($material, "text.primary");
+        color: map-get(map-get($material, "text"), "primary");
       }
 
       &:not(.#{$prefix}-btn-toggle--only-child) {
         .#{$prefix}-btn {
           &.#{$prefix}-btn--active:not(:last-child) {
-            border-right-color: map-get($material, "buttons.disabled");
+            border-right-color: map-get(map-get($material, "buttons"), "disabled");
           }
         }
       }

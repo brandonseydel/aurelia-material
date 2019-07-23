@@ -4,20 +4,20 @@
 /** Theme */
 @mixin md-input--switch($material) {
   &__thumb {
-    color: map-get($material, "selection-controls.thumb.inactive");
+    color: map-get(map-get(map-get($material, "selection-controls"), "thumb"), "inactive");
   }
 
   &__track {
-    color: map-get($material, "selection-controls.track.inactive");
+    color: map-get(map-get(map-get($material, "selection-controls"), "track"), "inactive");
   }
 
   &.#{$prefix}-input--is-disabled {
     .#{$prefix}-input--switch__thumb {
-      color: map-get($material, "selection-controls.thumb.disabled") !important;
+      color: map-get(map-get(map-get($material, "selection-controls"), "thumb"), "disabled") !important;
     }
 
     .#{$prefix}-input--switch__track {
-      color: map-get($material, "selection-controls.track.disabled") !important;
+      color: map-get(map-get(map-get($material, "selection-controls"), "track"), "disabled") !important;
     }
   }
 }

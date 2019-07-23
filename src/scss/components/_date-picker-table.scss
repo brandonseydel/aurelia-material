@@ -4,7 +4,7 @@
 @mixin md-date-picker-table($material) {
       th, 
       .#{$prefix}-date-picker-table--date__week {
-        color: map-get($material, "text.disabled");
+        color: map-get(map-get($material, "text"), "disabled");
       }
     }
     @include theme(md-date-picker-table, "#{$prefix}-date-picker-table");

@@ -4,10 +4,11 @@ import { IRegistry, IContainer, Registration } from '@aurelia/kernel';
 import { Button } from './button/button';
 import { CustomElement } from '@aurelia/runtime';
 import { Card } from './card/card';
-import { Elevation } from './elevation/elevation';
 import { ToClassValueConverter } from './to-class-value-conterter';
 import { Theme } from './theme/theme';
 import './scss/main.scss';
+import { CardTitle } from './card/card-title';
+import { Chip } from './chip/chip';
 
 
 export class MaterialUI implements IRegistry, IMaterialUIConfig {
@@ -21,12 +22,13 @@ export class MaterialUI implements IRegistry, IMaterialUIConfig {
     register(container: IContainer): void {
         this.registerComponent(container, Button);
         this.registerComponent(container, Card);
-        this.registerComponent(container, Elevation);
+        this.registerComponent(container, CardTitle);
         // this.registerComponent(container, Ripple);
         this.registerComponent(container, Shape);
         this.registerComponent(container, ToClassValueConverter);
         this.registerComponent(container, Ripple);
         this.registerComponent(container, Theme);
+        this.registerComponent(container, Chip);
     }
 
     registerComponent(container: IContainer, ...components: any) {

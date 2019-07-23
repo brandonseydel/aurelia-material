@@ -5,7 +5,7 @@
   &.#{$prefix}-text-field--solo-inverted.#{$prefix}-text-field--solo {
     &.#{$prefix}-input--is-focused {
       textarea {
-        color: map-get($material, "inputs.solo-inverted-focused-text");
+        color: map-get(map-get($material, "inputs"), "solo-inverted-focused-text");
       }
     }
   }

@@ -3,27 +3,27 @@
 
 /** Themes */
 @mixin md-time-picker-clock($material) {
-  background: map-get($material, "picker.clock");
+  background: map-get(map-get($material, "picker"), "clock");
 
   .#{$prefix}-time-picker-clock__item--disabled {
-    color: map-get($material, "buttons.disabled");
+    color: map-get(map-get($material, "buttons"), "disabled");
 
     &.#{$prefix}-time-picker-clock__item--active {
-      color: map-get($material-dark, "buttons.disabled");
+      color: map-get(map-get($material-dark, "buttons"), "disabled");
     }
   }
 
   &--indeterminate {
     .#{$prefix}-time-picker-clock__hand {
-      background-color: map-get($material, "picker.indeterminateTime");
+      background-color: map-get(map-get($material, "picker"), "indeterminateTime");
 
       &:after {
-        color: map-get($material, "picker.indeterminateTime");
+        color: map-get(map-get($material, "picker"), "indeterminateTime");
       }
     }
 
     .#{$prefix}-time-picker-clock__item--active {
-      background-color: map-get($material, "picker.indeterminateTime");
+      background-color: map-get(map-get($material, "picker"), "indeterminateTime");
     }
   }
 }

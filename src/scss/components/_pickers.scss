@@ -4,12 +4,12 @@
 /* Themes */
 
 @mixin md-picker-title($material) {
-  background: map-get($material, "picker.title");
+  background: map-get(map-get($material, "picker"), "title");
 }
 @include theme(md-picker-title, "#{$prefix}-picker__title");
 
 @mixin md-picker-body($material) {
-  background: map-get($material, "picker.body");
+  background: map-get(map-get($material, "picker"), "body");
 }
 @include theme(md-picker-body, "#{$prefix}-picker__body");
 

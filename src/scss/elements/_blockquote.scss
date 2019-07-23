@@ -1,5 +1,5 @@
 .blockquote {
-  padding: map-get($spacers, "three.y") 0, map-get($spacers, "three.y"), map-get($spacers, "four.x");
+  padding:  map-get(map-get($map: $spacers, $key: "three"), "y") 0  map-get(map-get($map: $spacers, $key: "three"), "y")  map-get(map-get($map: $spacers, $key: "four"), "x");
   font-size: 18px;
   font-weight: 300;
 }

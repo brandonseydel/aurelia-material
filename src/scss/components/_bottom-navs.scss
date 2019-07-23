@@ -5,7 +5,7 @@
   background-color: map-get($material, "cards");
 
   .#{$prefix}-btn:not(.#{$prefix}-btn--active) {
-    color: map-get($material, "text.secondary") !important;
+    color: map-get(map-get($material, "text"), "secondary") !important;
   }
 }
 @include theme(md-bottom-nav, "#{$prefix}-bottom-nav");

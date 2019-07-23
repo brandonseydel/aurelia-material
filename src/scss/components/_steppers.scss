@@ -12,10 +12,10 @@
     }
 
     &__step {
-      color: map-get($material, "stepper.active");
+      color: map-get(map-get($material, "stepper"), "active");
 
       .#{$prefix}-icon {
-        color: map-get($material, "stepper.active");
+        color: map-get(map-get($material, "stepper"), "active");
       }
     }
 
@@ -42,7 +42,7 @@
 
       &--complete {
         .#{$prefix}-stepper__label {
-          color: map-get($material, "stepper.completed");
+          color: map-get(map-get($material, "stepper"), "completed");
         }
       }
 
@@ -50,7 +50,7 @@
         &.#{$prefix}-stepper__step--editable:not(.#{$prefix}-stepper__step--error) {
           &:hover {
             .#{$prefix}-stepper__step__step {
-              background: map-get($material, "stepper.hover");
+              background: map-get(map-get($material, "stepper"), "hover");
             }
           }
         }

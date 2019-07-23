@@ -2,7 +2,7 @@
 @import "../theme";
 
 @mixin md-subheader($material) {
-  color: map-get($material, "text.secondary");
+  color: map-get(map-get($material, "text"), "secondary");
 }
 @include theme(md-subheader, "#{$prefix}-subheader");
 
@@ -10,8 +10,8 @@
   align-items: center;
   display: flex;
   height: $list-item-single-height;
-  font-size: map-get($headings, "body-2.size");
-  font-weight: map-get($headings, "body-2.weight");
+  font-size: map-get(map-get($headings, "body-2"), "size");
+  font-weight: map-get(map-get($headings, "body-2"), "weight");
   padding: 0 $list-right-padding 0 $list-left-padding;
 
   &--inset {

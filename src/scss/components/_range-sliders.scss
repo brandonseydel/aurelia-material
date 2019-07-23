@@ -6,7 +6,7 @@
         &.#{$prefix}-input--slider.#{$prefix}-input--is-disabled {
           .#{$prefix}-slider.#{$prefix}-slider {
             .#{$prefix}-slider__thumb {
-              background: map-get($material, "selection-controls.thumb.disabled");
+              background: map-get(map-get(map-get($material, "selection-controls"), "thumb"), "disabled");
             }
           }
         }

@@ -3,10 +3,10 @@
 
 /* Themes */
 @mixin md-icon($material) {
-  color: map-get($material, "icons.active");
+  color: map-get(map-get($material, "icons"), "active");
 
   &.#{$prefix}-icon--disabled {
-    color: map-get($material, "icons.inactive") !important;
+    color: map-get(map-get($material, "icons"), "inactive") !important;
   }
 }
 @include theme(md-icon, "#{$prefix}-icon");

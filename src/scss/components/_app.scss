@@ -26,19 +26,19 @@
 
 @mixin application($material) {
   background: map-get($material, "background");
-  color: map-get($material, "text.primary");
+  color: map-get(map-get($material, "text"), "primary");
 
   .text {
     &--primary {
-      color: map-get($material, "text.primary !important");
+      color: map-get(map-get($material, "text" ), "primary") !important;
     }
 
     &--secondary {
-      color: map-get($material, "text.secondary !important");
+      color: map-get(map-get($material, "text" ), "secondary") !important;
     }
 
     &--disabled {
-      color: map-get($material, "text.disabled !important");
+      color: map-get(map-get($material, "text" ), "disabled") !important;
     }
   }
 }

@@ -5,51 +5,51 @@
 @mixin md-slider($material) {
         .#{$prefix}-slider__track, 
         .#{$prefix}-slider__track-fill {
-          background: map-get($material, "slider.inactive");
+          background: map-get(map-get($material, "slider"), "inactive");
         }
 
         .#{$prefix}-slider__track__container {
           &:after {
-            border: 1px solid, map-get($material, "text.primary");
+            border: 1px solid, map-get(map-get($material, "text"), "primary");
           }
         }
 
         .#{$prefix}-slider__ticks {
-          border-color: map-get($material, "text.primary");
-          color: map-get($material, "text.secondary");
+          border-color: map-get(map-get($material, "text"), "primary");
+          color: map-get(map-get($material, "text"), "secondary");
         }
 
         &:not(.#{$prefix}-input--is-dirty) {
           .#{$prefix}-slider__thumb-label {
-            background: map-get($material, "slider.inactive");
+            background: map-get(map-get($material, "slider"), "inactive");
           }
 
           .#{$prefix}-slider__thumb {
-            border: 3px solid, map-get($material, "slider.inactive");
+            border: 3px solid, map-get(map-get($material, "slider"), "inactive");
           }
 
           &.#{$prefix}-input--slider--is-active {
             .#{$prefix}-slider__thumb {
-              border: 3px solid, map-get($material, "slider.active");
+              border: 3px solid, map-get(map-get($material, "slider"), "active");
             }
           }
         }
 
         &.#{$prefix}-input--is-disabled {
           .#{$prefix}-slider__thumb {
-            border: 5px solid, map-get($material, "slider.disabled");
+            border: 5px solid, map-get(map-get($material, "slider"), "disabled");
           }
         }
 
         &.#{$prefix}-input--is-disabled.#{$prefix}-input--is-dirty {
           .#{$prefix}-slider__thumb {
-            background: map-get($material, "slider.disabled");
+            background: map-get(map-get($material, "slider"), "disabled");
           }
         }
 
         &.#{$prefix}-input--slider--is-active {
           .#{$prefix}-slider__track {
-            background: map-get($material, "slider.active");
+            background: map-get(map-get($material, "slider"), "active");
           }
         }
       }

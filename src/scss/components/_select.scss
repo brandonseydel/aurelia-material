@@ -3,23 +3,23 @@
 
 @mixin md-select($material) {
         .#{$prefix}-select__selections {
-          color: map-get($material, "text.primary");
+          color: map-get(map-get($material, "text"), "primary");
         }
 
         &.#{$prefix}-input--is-disabled {
           .#{$prefix}-select__selections {
-            color: map-get($material, "text.disabled");
+            color: map-get(map-get($material, "text"), "disabled");
           }
         }
 
         .#{$prefix}-chip--disabled, 
         .#{$prefix}-select__selection--disabled {
-          color: map-get($material, "text.disabled");
+          color: map-get(map-get($material, "text"), "disabled");
         }
 
         &.#{$prefix}-text-field--solo-inverted.#{$prefix}-input--is-focused {
           .#{$prefix}-select__selections {
-            color: map-get($material, "inputs.solo-inverted-focused-text");
+            color: map-get(map-get($material, "inputs"), "solo-inverted-focused-text");
           }
         }
       }

@@ -6,20 +6,20 @@
   &:not(.#{$prefix}-input--is-disabled) {
     input,
     textarea {
-      color: map-get($material, "text.primary");
+      color: map-get(map-get($material, "text"), "primary");
     }
   }
 
   input::placeholder,
   textarea::placeholder {
-    color: map-get($material, "text.disabled");
+    color: map-get(map-get($material, "text"), "disabled");
   }
 
   &--is-disabled {
     .#{$prefix}-label,
     input,
     textarea {
-      color: map-get($material, "text.disabled");
+      color: map-get(map-get($material, "text"), "disabled");
     }
   }
 }

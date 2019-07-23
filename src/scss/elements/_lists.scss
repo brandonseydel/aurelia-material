@@ -1,4 +1,4 @@
 ul,
 ol {
-  padding-left: map-get($spacers, "four.x");
+  padding-left: map-get(map-get($spacers, "four"), "x");
 }

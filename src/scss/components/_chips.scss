@@ -1,12 +1,24 @@
 @import "../bootstrap";
 @import "../theme";
 
+@mixin light($name) {
+  .theme--light.#{$name} {
+    @include md-chip($material-light);
+  }
+}
+
+@mixin dark($name) {
+  .theme--dark.#{$name} {
+    @include md-chip($material-dark);
+  }
+}
+
 @mixin md-chip($material) {
-  background: map-get($material, "chips.background");
-  color: map-get($material, "chips.color");
+  background: map-get(map-get($material, "chips"), "background");
+  color: map-get(map-get($material, "chips"), "color");
 
   &--disabled {
-    color: map-get($material, "text.disabled");
+    color: map-get(map-get($material, "text"), "disabled");
   }
 }
 
@@ -43,8 +55,8 @@
   }
 }
 
-@include theme(md-chip, "#{$prefix}-chip");
-@include rtl(md-chip-rtl, "#{$prefix}-chip");
+@include dark("#{$prefix}-chip");
+@include light("#{$prefix}-chip");
 
 .#{$prefix}-chip {
   align-items: center;

@@ -4,7 +4,7 @@
 /* Theme */
 @mixin md-toolbar($material) {
   background-color:  map-get($material, "app-bar");
-  color:  map-get($material, "text.primary");
+  color:  map-get(map-get($material, "text"), "primary");
 }
 
 @mixin md-toolbar-content($direction){
@@ -63,9 +63,9 @@
   }
 
   &__title{
-    font-size:  map-get($headings, "h6.size");
-    font-weight:  map-get($headings, "h6.weight");
-    letter-spacing:  map-get($headings, "h6.letter-spacing");
+    font-size:  map-get(map-get($headings, "h6"), "size");
+    font-weight:  map-get(map-get($headings, "h6"), "weight");
+    letter-spacing:  map-get(map-get($headings, "h6"), "letter-spacing");
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

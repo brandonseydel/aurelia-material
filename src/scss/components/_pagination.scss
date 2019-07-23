@@ -10,7 +10,7 @@
     padding: 0 5px;
 
     &--active {
-      color: map-get($material, "text.theme");
+      color: map-get(map-get($material, "text"), "theme");
     }
   }
 

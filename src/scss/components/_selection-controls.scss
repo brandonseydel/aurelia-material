@@ -6,7 +6,7 @@
         &.#{$prefix}-input--is-disabled {
           .#{$prefix}-icon {
 
-            color: map-get($material, "buttons.disabled") !important;
+            color: map-get(map-get($material, "buttons"), "disabled") !important;
           }
         }
       }
